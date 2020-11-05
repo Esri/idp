@@ -1,5 +1,6 @@
 # IDP
 
+TEMPLATE:
 Here are a set of simple samples that show you how to accomplish different mapping and GIS tasks with the ArcGIS API for Javascript. The samples use ArcGIS Online basemaps and services.  Learn more [here](http://www.arcgis.com/about/).
 
 [View it live](http://edn1.esri.com/quickstart-map-js/)
