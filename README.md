@@ -1,36 +1,24 @@
 # IDP
 
-TEMPLATE:
+## Purpose:
 
-Here are a set of simple samples that show you how to accomplish different mapping and GIS tasks with the ArcGIS API for Javascript. The samples use ArcGIS Online basemaps and services.  Learn more [here](http://www.arcgis.com/about/).
+## Topic
 
-[View it live](http://edn1.esri.com/quickstart-map-js/)
-
-![App](https://raw.github.com/Esri/quickstart-map-js/master/quickstart-map-js.png)
-
-## Features
-* Basemaps - Set different basemaps interactively
-* Geolocation - Find and display your geolocation
-* Place Finding - Find places or geocode an address
-* Directions - Get directions
-* Graphics - Draw points, lines and polygons
-* Cloud - Draw and query features stored in the ArcGIS Online cloud
+* Sample Text 1
+* Sample Text 2
 
 ## Instructions
 
-1. Fork and then clone the repo. 
-2. Run and try the samples.
+1. Sample Text 1 
+2. Sample Tex 2
 
 ## Requirements
 
-* Notepad or your favorite HTML editor
-* Web browser with access to the Internet
+* Sample Text
 
-## Resources
+## Useful links
 
-* [ArcGIS for JavaScript API Resource Center](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
-* [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
-* [twitter@esri](http://twitter.com/esri)
+* Sample Link
 
 ## Issues
 
@@ -57,8 +45,9 @@ limitations under the License.
 
 A copy of the license is available in the repository's [license.txt]( https://raw.github.com/Esri/quickstart-map-js/master/license.txt) file.
 
-[](Esri Tags: ArcGIS Web Mapping QuickStart)
-[](Esri Language: JavaScript)​
+Tags:
+[] IDP
+[] Authentication
 ​​​​​​​​​​​​​​
 
  
