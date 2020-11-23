@@ -10,7 +10,7 @@
 ## Instructions
 
 1. Sample Text 1 
-2. Sample Tex 2
+2. Sample Text 2
 
 ## Requirements
 
