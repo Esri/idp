@@ -7,7 +7,8 @@ Test text
 * Bullets
 
 How to add screenshots?
-Link to an uploaded image - [Screenshot1] (Documentation/ArcGIS Online/Screenshot1.jpg)
+Link to an uploaded image - ![Screenshot1](
+https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Screenshot1.jpg)
 
 https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Screenshot1.jpg
 
