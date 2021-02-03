@@ -13,7 +13,7 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-creat
 https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app 
 or by following the instructions below.
 4.	Under Manage Azure Active Directory, click View.
-Image-Welcome to Azure
+![Image-Welcome to Azure](Documentation/ArcGIS Online/Images/Image-Welcome to Azure.png)
 5.	Click App registrations.
 Image-App registrations
 6.	Click New registration.
