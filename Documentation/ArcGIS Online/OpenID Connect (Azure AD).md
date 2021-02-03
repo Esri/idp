@@ -1,6 +1,6 @@
 # OpenID Connect configuration using Azure AD
 
-The configuration described below is for Azure public cloud only. Endpoints for sovereign Azure clouds (Azure Government, China Azure Cloud and Azure Germany) are separate.
+**The configuration described below is for Azure public cloud only. Endpoints for sovereign Azure clouds (Azure Government, China Azure Cloud and Azure Germany) are separate.**
 
 ## 
 
