@@ -2,7 +2,7 @@
 
 The configuration described below is for Azure public cloud only. Endpoints for sovereign Azure clouds (Azure Government, China Azure Cloud and Azure Germany) are separate.
 
-## Title
+## 
 
 1.	Sign up for an Azure account if you don’t already have one by going to this site: 
 https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-create-new-tenant
