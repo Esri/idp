@@ -10,7 +10,7 @@ IDP_info@esri.com
 We will review all submittals for content and clarity, but welcome any style of writing. 
 
 ## Info
-This repo is being released in the first quarter of 2021, at its beginning including only a small subsection of all IDP documentation.
+This repo is being released in the first quarter of 2021, initially including a small subsection of all IDP documentation.
 If you cannot find the documentation you're looking for, please visit the ArcGIS documentation in the Useful Links section.
 
 Esri does not maintain individual submittals to this repository. That which is published here is deemed accurate at the time of publication, for the software version(s) indicated.
