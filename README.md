@@ -1,6 +1,6 @@
 # IDP
 
-## Purpose: This repository includes configuration details for a variety of SAML-compliant Identity Providers in conjunction with an ArcGIS implementation.
+## Purpose: Instructions for configuring SAML-compliant Identity Providers in conjunction with an ArcGIS implementation.
 
 ## Instructions
 
