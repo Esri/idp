@@ -1,24 +1,30 @@
 # IDP
 
-## Purpose:
-
-## Topic
-
-* Sample Text 1
-* Sample Text 2
+## Purpose: This repository includes configuration details for a variety of SAML-compliant Identity Providers in conjunction with an ArcGIS implementation.
 
 ## Instructions
 
-1. Sample Text 1 
-2. Sample Text 2
+If you'd like to contribute to this repository, or have questions or feedback, you're welcome to create an Issue or contact our team via this email alias:
+IDP_info@esri.com
 
-## Requirements
+We will review all submittals for content and clarity, but welcome any style of writing. 
 
-* Sample Text
+## Info
+This repo is being released in the first quarter of 2021, at its beginning including only a small subsection of all IDP documentation.
+If you cannot find the documentation you're looking for, please visit the ArcGIS documentation in the Useful Links section.
+
+Esri does not maintain individual submittals to this repository. That which is published here is deemed accurate at the time of publication, for the software version(s) indicated.
 
 ## Useful links
 
-* Sample Link
+For general information about configuring SAML logins, please refer to the ArcGIS documentation pages:
+
+ArcGIS Online
+https://doc.arcgis.com/en/arcgis-online/reference/faq.htm 
+
+ArcGIS Enterprise
+https://enterprise.arcgis.com/en/ 
+
 
 ## Issues
 
