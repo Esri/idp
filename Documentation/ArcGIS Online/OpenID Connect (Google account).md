@@ -45,7 +45,7 @@ To configure OpenID Connect using a regular Google account, complete the followi
 
 **Notes:**
 
-1.	When precreating users from SAML or OpenID, you need to provide the ID or sub or NameID that uniquely identifies the user on the provider side. This is the main property that binds the user from IDP to our system. For Gmail, it is not the first part before @gmail.com. It will be some other unique ID on Google side for your user.
+1.	When precreating users from SAML or OpenID, you need to provide the ID or sub or NameID that uniquely identifies the user on the provider side. This is the main property that binds the user from IDP to esri's system. For Gmail, it is not the first part before @gmail.com. It will be some other unique ID on Google side for your user.
 
 2.	Precreating users with cloud providers like Google can be tricky because this information is not readily available for the general users of Google in the UI unless you make certain API calls to Google. Google has an API explorer, and you can try the steps below if you want to find out the user ID corresponding to your Gmail address: 
     - Go to https://developers.google.com/people/api/rest/v1/people/get and sign in.
