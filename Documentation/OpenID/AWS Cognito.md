@@ -18,7 +18,7 @@ A Cognito user pool is a way to provide authentication (identity verification) f
 
 4. Configure how you want your end users to sign in, as shown below, and click Next step.
 
-![Image-How do you want your end users to sign in](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-How%20do%20you%20want%20your%20end%20users%20to%20sign%20in.png)
+![Image-How do you want your end users to sign in](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-How%20do%20you%20want%20your%20end%20users%20to%20sign%20in.png)
 
 5. Next, customize your policies, like password strength, and click Next step.
 
@@ -26,7 +26,7 @@ A Cognito user pool is a way to provide authentication (identity verification) f
 
 7. Now set up your message customizations with your SES verified email account and choose the Yes – Use Amazon SES option. Most accounts, if they have not used SES, are put into a Sandbox mode that requires SES verification of the “send to” address. In a production scenario, a request should be made to AWS to remove your account from the Sandbox. For this exercise, ensure that you have SES verified your email, so it is an option in the FROM email address and is selectable from the drop-down menu.
 
-![Image-Do you want to customize your email address](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-Do%20you%20want%20to%20customize%20your%20email%20address.png)
+![Image-Do you want to customize your email address](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-Do%20you%20want%20to%20customize%20your%20email%20address.png)
 
 8. Before moving on, you can accept the message customization defaults or change the messaging of the email and SMS templates used for communicating with your users (this can be changed later). Click Next step to continue.
 
@@ -36,7 +36,7 @@ A Cognito user pool is a way to provide authentication (identity verification) f
 
 11. Now you will add an app client for your ArcGIS Online organization to connect with. An app client is any application that will use your user pool as an identity provider for authentication. Click Add an app client and give your app client a name. Configure the remaining options as shown below and click Create app client to create. You will dive into this in more detail later. Click Next step to continue.
 
-![Image-Which app clients will have access to this user pool](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-Which%20app%20clients%20will%20have%20access%20to%20this%20user%20pool.png)
+![Image-Which app clients will have access to this user pool](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-Which%20app%20clients%20will%20have%20access%20to%20this%20user%20pool.png)
 
 12. You will skip the trigger workflows step, but here you can assign custom AWS Lambda functions to be triggered in various steps of the authentication process for customized workflows. Click Next steps to continue.
 
@@ -58,19 +58,19 @@ If needed, click the user pool you just created in AWS Cognito.
 
 3. Next go to the App client settings section. This is where you will customize some settings for your app client. Note that if you created multiple app clients for other applications, you will have multiple sections here for customizing each application setting. For configuring for ArcGIS Online, follow exactly as shown below (you will update the callback and sign-out URLs after configuring ArcGIS Online), and click Save changes when finished:
 
-![Image-App client test](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-App%20client%20test.png)
+![Image-App client test](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-App%20client%20test.png)
 
 4. Next move on to the Domain name section. This is the area where you will configure a domain name for the URLs for ArcGIS Online (and any other app clients you configure) to communicate back to your user pool. This domain name is not specific to just one app client but will be used for configuring any applications connecting to your user pool for authentication. 
 
 AWS Cognito provides two options for creating a domain. The first is an Amazon Cognito domain that Cognito will create for you. The second is for a domain you configure yourself through other AWS services such as Route53 and Certificate Manager. For this walkthrough, you’ll let Cognito create one for you. Enter a valid domain prefix such as my-userpool-<pool name>. This prefix will have to be unique for the region being deployed. Click Check availability to verify until you have a domain you can use and click Save changes:
 
-![Image-What domain would you like to use](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-What%20domain%20would%20you%20like%20to%20use.png)
+![Image-What domain would you like to use](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-What%20domain%20would%20you%20like%20to%20use.png)
 
 5. Next, you will customize the UI for the login screen your users will use to connect. You can customize a logo and other CSS parameters for the styling of the login screen. For this walkthrough, we have selected an Esri logo and kept the remainder as default. Currently, there is no way to preview the login screen here. You will see it when authenticating from ArcGIS Online.
 
 6. At this point you have configured your app client and set up the remaining requirements for signing in but still need to create a user in your user pool to test with. Browse back up to the Users and groups section of the Cognito console and click the Create user button. Fill in the user name for yourself and create a temporary password (this will be emailed to you with your user name). Set up the remaining details as shown below and click Create user. If you have verified your email with SES, you should receive an email shortly.
 
-![Image-Create user](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-Create%20user.png)
+![Image-Create user](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-Create%20user.png)
 
 **Configuring ArcGIS Online**
 
@@ -101,15 +101,15 @@ Now sign in to your ArcGIS Online organization and browse to Organization > Sett
 
 3. After you have filled in the information as shown, click Save to complete.
 
-![Image-Edit OpenID Connect Login](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-Edit%20OpenID%20Connect%20login.png)
+![Image-Edit OpenID Connect Login](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-Edit%20OpenID%20Connect%20login.png)
 
 4. When complete, you will have two URIs for the login and logout URIs. You will enter these in the app client settings for callback and login URLs in your AWS Cognito user pool.
 
-![Image-OpenID Connect login](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-OpenID%20Connect%20login.png)
+![Image-OpenID Connect login](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-OpenID%20Connect%20login.png)
 
 5. Update the App client settings URLs for your app client in your AWS Cognito user pool as shown below by pasting in the two URLs from ArcGIS Online and clicking Save changes:
 
-![Image-What identity providers and OAuth settings should be used for your app clients](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-What%20identity%20providers%20and%20OAuth%20settings%20should%20be%20used%20to%20your%20app%20clients.png)
+![Image-What identity providers and OAuth settings should be used for your app clients](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-What%20identity%20providers%20and%20OAuth%20settings%20should%20be%20used%20to%20your%20app%20clients.png)
 
 **Verifying the AWS Cognito with ArcGIS Online OpenID Connect setup**
 
@@ -117,15 +117,15 @@ At this point you are ready to validate and test your setup. By now, you should 
 
 Ensure you are signed out of the ArcGIS Online organization so that you are taken to the sign-in screen. You should now see a new button with the label you used when configuring the OpenID Connect in your ArcGIS Online organization. The following example shows Esri InCognito is displayed above the existing SAML identify provider.
 
-![Image-Sign in to Regional Services Development Sandbox](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-Sign%20in%20to%20Regional%20Services%20Development%20Sandbox.png)
+![Image-Sign in to Regional Services Development Sandbox](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-Sign%20in%20to%20Regional%20Services%20Development%20Sandbox.png)
 
 Use this button to sign in with the AWS Cognito user account that you created. You will be sent to the AWS Cognito login page. You can see the customizations below with the logo update and a few CSS color updates. 
 
-![Image-Sign in dialog](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-Sign%20in%20dialog.png)
+![Image-Sign in dialog](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-Sign%20in%20dialog.png)
 
 After login, Cognito will (in this example) ask you to reset your password and provide the information for name, family name, given name, and so on. This information will be read by ArcGIS Online when automatically creating your account. You will be able to see this in the profile area for the new account that was just created.
 
-![Image-User profile area](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(AWS%20Cognito)/Image-User%20profile%20area.png)
+![Image-User profile area](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/AWS%20Cognito-Images/Image-User%20profile%20area.png)
 
 This point onwards, follow all your regular workflows for providing permissions to an user or organizing into groups. If you have found issues, review the URLs, app IDs, user account, user pool ID, and AWS region information for typos or potential configuration inputs entered incorrectly.
 
