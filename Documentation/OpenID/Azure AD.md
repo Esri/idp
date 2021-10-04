@@ -13,39 +13,39 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-creat
 
 4.	Under Manage Azure Active Directory, click View.
 
-![Image-Welcome to Azure](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Welcome%20to%20Azure.png)
+![Image-Welcome to Azure](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Welcome%20to%20Azure.png)
 
 5.	Click App registrations.
 
-![Image-App registrations](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-App%20registrations.png)
+![Image-App registrations](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-App%20registrations.png)
 
 6.	Click New registration.
 
-![Image-New registration](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-New%20registration.png)
+![Image-New registration](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-New%20registration.png)
 
 7.	Specify the app name. You will provide a redirect URI later.
 
-![Image-Register an application](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Register%20an%20application.png)
+![Image-Register an application](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Register%20an%20application.png)
 
 8.	Click Register. This gives you the application (client) ID. You will have to come back to add a redirect URI that will be generated when OpenID Connect is configured in ArcGIS Online.
 
-![Image-Application ID](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Application%20ID.png)
+![Image-Application ID](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Application%20ID.png)
 
 9.	Go to the Authentication tab and select Platform.
 
-![Image-Authentication](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Authentication.png)
+![Image-Authentication](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Authentication.png)
 
 10.	Configure the platform. In this example, a web application is selected.
 
-![Image-Configure Web](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Configure%20Web.png)
+![Image-Configure Web](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Configure%20Web.png)
 
 11.	Generate a secret by going to Certificates & secrets and clicking New client secret.
 
-![Image-Certificates and secrets](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Certificates%20and%20secrets.png)
+![Image-Certificates and secrets](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Certificates%20and%20secrets.png)
 
 12.	Specify the description and expiry information.
 
-![Image-Add a client secret](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Add%20a%20client%20secret.png)
+![Image-Add a client secret](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Add%20a%20client%20secret.png)
 
 13.	Browse to the well-known URL. 
     - The well-known URL is of the form https://login.microsoftonline.com/{tenant}/v2.0, where tenant value can be common, organizations, consumers, and so on, detailed [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc) depending on the type of account that is allowed to sign in to the app. 
@@ -56,27 +56,27 @@ Go to https://login.microsoftonline.com/common/v2.0/.well-known/openid-configura
 
 14.	Click Organization > Settings > Security > Logins > OpenID Connect login > Set up OpenID Connect login.
 
-![Image-Security](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Security.png)
+![Image-Security](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Security.png)
 
 15.	Configure OpenID Connect properties from the well-known URL and the application client ID and secret created above, and click Save.
 
-![Image-Edit OpenID Connect login](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Edit%20OpenID%20Connect%20login.png)
+![Image-Edit OpenID Connect login](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Edit%20OpenID%20Connect%20login.png)
 
 16.	This generates a login URI and a logout URI (if configured). Copy the login URI.
 
-![Image-OpenID Connect login](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-OpenID%20Connect%20login.png)
+![Image-OpenID Connect login](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-OpenID%20Connect%20login.png)
 
 17.	Go to your Azure AD registered app that was created before. 
     - Go to the Overview tab on your registered app and click the link corresponding to  Redirect URIs: 1 web, 0 spa, 0 public client.
     
-![Image-Redirect URIs](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Redirect%20URIs.png)
+![Image-Redirect URIs](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Redirect%20URIs.png)
 
 18.	Paste the login URI that was generated after configuring OpenID Connect.
     - Also, copy the last/previous logout URL that was generated (if the OpenID Connect logout endpoint was configured).
     - Click Save.
     - Configuration is complete.
     
-![Image-Platform configurations](https://github.com/ArcGIS/idp/blob/main/Documentation/ArcGIS%20Online/Images/OpenID%20Connect%20(Azure%20AD)/Image-Platform%20configurations.png)
+![Image-Platform configurations](https://github.com/Esri/idp/blob/main/Documentation/OpenID/Images/Azure%20AD-Images/Image-Platform%20configurations.png)
 
 19.	To test whether the Automatic join option was selected, sign out of your ArcGIS Online organization, and browse to your organization URL.
 
