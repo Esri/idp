@@ -115,7 +115,7 @@ ArcGIS Online supports the inflow of a user's email address, group memberships, 
        **E-Mail-Addresses** | **E-Mail Address**
        **Token-Groups - Unqualified Names** | **Group**
        
-    Image-Configure Rule
+    ![Image-Configure Rule](https://github.com/Esri/idp/blob/main/Documentation/SAML/Images/ADFS-Images/Image-Configure%20Rule.jpg)
     
     > **CAUTION:** Manually typing values instead of selecting them from the drop-down menus creates user-defined attributes and could result in errors. For best results, use the drop-down menus to specify values.
     
