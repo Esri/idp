@@ -125,7 +125,10 @@ ArcGIS Online supports the inflow of a user's email address, group memberships, 
     
 16. Click **Finish** to finish configuring the AD FS IDP to include ArcGIS Online as a relying party.
      
-       
+     
+     
+---
+**_Please note these instructions apply to both ArcGIS Online and ArcGIS Enterprise._**
        
        
        
