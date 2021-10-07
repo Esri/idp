@@ -1,3 +1,8 @@
+**_Please note these instructions apply to both ArcGIS Online and ArcGIS Enterprise._**
+
+----
+
+
 # Configure Active Directory Federation Services
 
 Active Directory Federation Services (AD FS) is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it in the Microsoft Windows Server operating system as [your IDP for SAML logins](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) in ArcGIS Online. The configuration process involves two main steps: registering your SAML IDP with ArcGIS Online and registering ArcGIS Online with the SAML IDP. 
@@ -125,10 +130,7 @@ ArcGIS Online supports the inflow of a user's email address, group memberships, 
     
 16. Click **Finish** to finish configuring the AD FS IDP to include ArcGIS Online as a relying party.
      
-     
-     
----
-**_Please note these instructions apply to both ArcGIS Online and ArcGIS Enterprise._**
+  
        
        
        
