@@ -1,21 +1,21 @@
-**_Please note these instructions apply to both ArcGIS Online and ArcGIS Enterprise._**
+**_Please note the term 'ArcGIS' in the following document refers to both ArcGIS Online and ArcGIS Enterprise._**
 
 ----
 
 
 # Configure Active Directory Federation Services
 
-Active Directory Federation Services (AD FS) is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it in the Microsoft Windows Server operating system as [your IDP for SAML logins](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) in ArcGIS Online. The configuration process involves two main steps: registering your SAML IDP with ArcGIS Online and registering ArcGIS Online with the SAML IDP. 
+Active Directory Federation Services (AD FS) is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it in the Microsoft Windows Server operating system as [your IDP for SAML logins](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) in ArcGIS. The configuration process involves two main steps: registering your SAML IDP with ArcGIS and registering ArcGIS with the SAML IDP. 
 
 > **Note:** To ensure that your SAML logins are configured securely, review the [best practices for SAML security](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_SECTION1_E8C7F86C02A04A778878B1327C633B36).
 
 ## Required information
 
-ArcGIS Online requires certain attribute information to be received from the IDP when a user signs in using SAML logins. The NameID attribute is mandatory and must be sent by your IDP in the SAML response to make the federation with ArcGIS Online work. Since ArcGIS Online uses the value of `NameID` to uniquely identify a named user, it is recommended that you use a constant value that uniquely identifies the user. When a user from the IDP signs in, a new user with the user name `NameID_<url_key_for_org>` will be created by ArcGIS Online in its user store. The allowed characters for the value sent by `NameID` are alphanumeric, _ (underscore), . (dot), and @ (at sign). Any other characters will be escaped to contain underscores in the user name created by ArcGIS Online.
+ArcGIS requires certain attribute information to be received from the IDP when a user signs in using SAML logins. The NameID attribute is mandatory and must be sent by your IDP in the SAML response to make the federation with ArcGIS work. Since ArcGIS uses the value of `NameID` to uniquely identify a named user, it is recommended that you use a constant value that uniquely identifies the user. When a user from the IDP signs in, a new user with the user name `NameID_<url_key_for_org>` will be created by ArcGIS in its user store. The allowed characters for the value sent by `NameID` are alphanumeric, _ (underscore), . (dot), and @ (at sign). Any other characters will be escaped to contain underscores in the user name created by ArcGIS.
 
-ArcGIS Online supports the inflow of a user's email address, group memberships, given name, and surname from the SAML identity provider. It's recommended that you pass in the email address from the SAML IDP so the user can receive notifications. This helps if the user later becomes an administrator. Having an email address in the account entitles the user to receive notifications regarding any administrative activity and send invitations to other users to join the organization.
+ArcGIS supports the inflow of a user's email address, group memberships, given name, and surname from the SAML identity provider. It's recommended that you pass in the email address from the SAML IDP so the user can receive notifications. This helps if the user later becomes an administrator. Having an email address in the account entitles the user to receive notifications regarding any administrative activity and send invitations to other users to join the organization.
 
-## Register AD FS as the SAML IDP with ArcGIS Online
+## Register AD FS as the SAML IDP with ArcGIS
 
 1. Verify that you are signed in as an administrator of your organization.
 
@@ -25,30 +25,30 @@ ArcGIS Online supports the inflow of a user's email address, group memberships, 
 
 4. In the **Logins** section, click the **New SAML login** button, and select the **One identity provider** option. On the **Specify properties** page, type your organization's name (for example, `City of Redlands`). When users access the organization website, this text displays as part of the SAML sign-in option (for example, `Using your City of Redlands account`).
 
-   > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS Online organization. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP.
+   > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS organization. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP.
 
 5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization. When the user receives the invitation, they can sign in to the organization.
 
 6. Provide metadata information for the IDP using one of the options below:
    - **URL**—If the URL of AD FS federation metadata is accessible, select this option and enter the URL (for example, `https://<adfs-server>/federationmetadata/2007-06/federationmetadata.xml`).
-   - **File**—Choose this option if the URL is not accessible. Download or obtain a copy of the federation metadata file from AD FS and upload the file to ArcGIS Online using the **File** option.
+   - **File**—Choose this option if the URL is not accessible. Download or obtain a copy of the federation metadata file from AD FS and upload the file to ArcGIS using the **File** option.
    - **Parameters specified here**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your AD FS administrator to obtain these.
 
 7. Configure the advanced settings as applicable:
    - **Encrypt Assertion**—Enable this option to encrypt the AD FS SAML assertion responses.
-   - **Enable signed request**—Enable this option to have ArcGIS Online sign the SAML authentication request sent to AD FS.
-   - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS Online use a logout URL to sign out the user from AD FS. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, **Enable signed request** must be turned on.
+   - **Enable signed request**—Enable this option to have ArcGIS sign the SAML authentication request sent to AD FS.
+   - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS use a logout URL to sign out the user from AD FS. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, **Enable signed request** must be turned on.
        
      > **Note:** By default, AD FS requires logout requests to be signed using SHA-256, so you must enable the **Enable signed request** toggle button and select **Sign using SHA256**.
      
-   - **Update profiles on sign in**—Enable this option to automatically synchronize account information (full name and email address) stored in ArcGIS Online user profiles with the latest account information received from the IDP. Enabling this option allows your organization to verify, when a user signs in with a SAML login, whether the IDP information has changed since the account was created and, if so, to update the user's ArcGIS Online account profile accordingly.
-   - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based groups to ArcGIS Online groups during the [group creation process](https://doc.arcgis.com/en/arcgis-online/share-maps/create-groups.htm).
+   - **Update profiles on sign in**—Enable this option to automatically synchronize account information (full name and email address) stored in ArcGIS user profiles with the latest account information received from the IDP. Enabling this option allows your organization to verify, when a user signs in with a SAML login, whether the IDP information has changed since the account was created and, if so, to update the user's ArcGIS account profile accordingly.
+   - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based groups to ArcGIS groups during the [group creation process](https://doc.arcgis.com/en/arcgis-online/share-maps/create-groups.htm).
    - **Logout URL**—The IDP URL to use to sign out the currently signed-in user.
-   - **Entity ID**—Update this value to use a new entity ID to uniquely identify your ArcGIS Online organization to AD FS.
+   - **Entity ID**—Update this value to use a new entity ID to uniquely identify your ArcGIS organization to AD FS.
 
 8. Click **Save**.
 
-## Register ArcGIS Online as the trusted service provider with AD FS
+## Register ArcGIS as the trusted service provider with AD FS
 
 1. Open the AD FS management console.
 
@@ -60,11 +60,11 @@ ArcGIS Online supports the inflow of a user's email address, group memberships, 
 
    URL and file options require that you obtain the metadata from your organization. If you don't have access to the metadata URL or file, you can enter the information manually. In some cases, entering the data manually may be the easiest option.
    
-   - **Import data about the relying party published online or on a local network**: This option uses the URL metadata of your ArcGIS Online organization. The URL is `https://<url_key_for_org>.maps.arcgis.com/sharing/rest/portals/self/sp/metadata?token=<token>`, for example, `https://samltest.maps.arcgis.com/sharing/rest/portals/self/sp/metadata?token=G6943LMReKj_kqdAVrAiPbpRloAfE1fqp0eVAJ-IChQcV-kv3gW-gBAzWztBEdFY`.
+   - **Import data about the relying party published online or on a local network**: This option uses the URL metadata of your ArcGIS organization. The URL is `https://<url_key_for_org>.maps.arcgis.com/sharing/rest/portals/self/sp/metadata?token=<token>`, for example, `https://samltest.maps.arcgis.com/sharing/rest/portals/self/sp/metadata?token=G6943LMReKj_kqdAVrAiPbpRloAfE1fqp0eVAJ-IChQcV-kv3gW-gBAzWztBEdFY`.
 
      Generate a token using https://www.arcgis.com/sharing/rest/generateToken. You must generate a token using HTTPS POST programmatically with JSON output format. For more information, see [ArcGIS REST API](https://developers.arcgis.com/rest/users-groups-and-items/generate-token.htm).
      
-   - **Import data about the relying party from a file**: This option uses a `metadata.xml` file from your ArcGIS Online organization. There are two ways you can get a metadata `.xml` file:
+   - **Import data about the relying party from a file**: This option uses a `metadata.xml` file from your ArcGIS organization. There are two ways you can get a metadata `.xml` file:
      
       - On the organization page, click the **Settings** tab and click **Security** on the left side of the page. In the **Logins** sections, under **SAML login**, click the **Download service provider metadata** button to download the metadata file for your organization.
       - Open the URL of the metadata file and save it as an .xml file on your computer. You can view and copy the URL in the **Edit SAML login** window under **Link to download the service provider metadata**.
@@ -124,11 +124,11 @@ ArcGIS Online supports the inflow of a user's email address, group memberships, 
     
     > **CAUTION:** Manually typing values instead of selecting them from the drop-down menus creates user-defined attributes and could result in errors. For best results, use the drop-down menus to specify values.
     
-    With this claim, AD FS sends attributes with the names `givenname`, `surname`, `email`, and `group membership` to ArcGIS Online after authenticating the user. ArcGIS Online then uses the values received in the `givenname`, `surname`, and `email` attributes and populates the first name, last name, and email address of the user account. The values in the group attribute are used to update the user's group membership.
+    With this claim, AD FS sends attributes with the names `givenname`, `surname`, `email`, and `group membership` to ArcGIS after authenticating the user. ArcGIS then uses the values received in the `givenname`, `surname`, and `email` attributes and populates the first name, last name, and email address of the user account. The values in the group attribute are used to update the user's group membership.
     
     > **Note:** If you selected the **Enable SAML based group membership** option when registering AD FS as the SAML IDP, membership for each user is obtained from the SAML assertion response received from the identity provider every time the user successfully signs in. For information on linking SAML groups, see [Create groups](https://doc.arcgis.com/en/arcgis-online/share-maps/create-groups.htm).
     
-16. Click **Finish** to finish configuring the AD FS IDP to include ArcGIS Online as a relying party.
+16. Click **Finish** to finish configuring the AD FS IDP to include ArcGIS as a relying party.
      
   
        
