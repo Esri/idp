@@ -5,9 +5,9 @@
 
 # Configure Active Directory Federation Services
 
-Active Directory Federation Services (AD FS) is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it in the Microsoft Windows Server operating system as [your IDP for SAML logins](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) in ArcGIS. The configuration process involves two main steps: registering your SAML IDP with ArcGIS and registering ArcGIS with the SAML IDP. 
+Active Directory Federation Services (AD FS) is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it in the Microsoft Windows Server operating system as your IDP for SAML logins in [ArcGIS Online](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) and [ArcGIS Enterprise](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm). The configuration process involves two main steps: registering your SAML IDP with ArcGIS and registering ArcGIS with the SAML IDP. 
 
-> **Note:** To ensure that your SAML logins are configured securely, review the [best practices for SAML security](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_SECTION1_E8C7F86C02A04A778878B1327C633B36).
+> **Note:** To ensure that your SAML logins are configured securely, review the best practices for SAML security in [ArcGIS Enterprise](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_E8C7F86C02A04A778878B1327C633B36) and [ArcGIS Online](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_SECTION1_E8C7F86C02A04A778878B1327C633B36).
 
 ## Required information
 
