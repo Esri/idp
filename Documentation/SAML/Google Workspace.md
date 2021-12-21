@@ -61,15 +61,15 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    
     - For **ACS URL**, copy the value of the **AssertionConsumerService** element.
 
-       Example: `https://[org name].maps.arcgis.com/sharing/rest/oauth2/saml/signin`
+       Example: `https://[org name].maps.arcgis.com/sharing/rest/oauth2/saml/signin` (ArcGIS Online) or `https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin` (ArcGIS Enterprise)
 
     - For **Entity ID**, copy the value of the `entityID` attribute.
        
-       Example: `[org name].maps.arcgis.com`
+       Example: `[org name].maps.arcgis.com` (ArcGIS Online) or `portal.domain.com.arcgis` (ArcGIS Enterprise)
 
     - For **Start URL**, copy the value of the **OrganizationURL** attribute.
        
-       Example: `https://[org name].maps.arcgis.com`
+       Example: `https://[org name].maps.arcgis.com` (ArcGIS Online) or `portal.domain.com.arcgis` (ArcGIS Enterprise)
 
     - Leave **Name ID** as **Basic Information Primary Email** (or another unique attribute that your Google Workspace subscription uses).
 
