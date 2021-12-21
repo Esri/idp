@@ -11,7 +11,7 @@ NetIQ Access Manager is a Security Assertion Markup Language (SAML)-compliant id
 
 ## Required information
 
-ArcGIS requires certain attribute information to be received from the IDP when a user signs in using SAML logins. The `NameID` attribute is mandatory and must be sent by your IDP in the SAML response to make the federation with ArcGIS work. Since ArcGIS uses the value of `NameID` to uniquely identify a named user, it is recommended that you use a constant value that uniquely identifies the user. When a user from the IDP signs in, a new user with the user name `NameID_<url_key_for_org>` will be created by ArcGIS in its user store. The allowed characters for the value sent by `NameID` are alphanumeric, _ (underscore), . (dot), and @ (at sign). Any other characters will be escaped to contain underscores in the user name created by ArcGIS.
+ArcGIS requires certain attribute information to be received from the IDP when a user signs in using SAML logins. The `NameID` attribute is mandatory and must be sent by your IDP in the SAML response to make the federation with ArcGIS work. Since ArcGIS uses the value of `NameID` to uniquely identify a named user, it is recommended that you use a constant value that uniquely identifies the user. When a user from the IDP signs in, a new user with the user name `NameID_<url_key_for_org>` will be created by ArcGIS organization in its user store. The allowed characters for the value sent by `NameID` are alphanumeric, _ (underscore), . (dot), and @ (at sign). Any other characters will be escaped to contain underscores in the user name created by ArcGIS.
 
 ArcGIS supports the inflow of a user's email address, group memberships, given name, and surname from the SAML identity provider. It's recommended that you pass in the email address from the SAML IDP so the user can receive notifications. This helps if the user later becomes an administrator. Having an email address in the account entitles the user to receive notifications regarding any administrative activity and send invitations to other users to join the organization.
 
@@ -25,12 +25,17 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
 4. In the **Logins** section, click the **New SAML login button**, and select the **One identity provider** option. On the **Specify properties** page, type your organization's name (for example, `City of Redlands`). When users access the organization website, this text displays as part of the SAML sign-in option (for example, `Using your City of Redlands account`).
 
-   > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS organization. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP.
+   > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS organization. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP. See [one federation of IDPs](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configure-a-federation-of-identity-providers.htm) for ArcGIS Enterprise instructions.
 
-5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization. When the user receives the invitation, they can sign in to the organization.
+5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization (using a [command line utility](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION1_29AF645AF75140698CA9879C3E059D39) for ArcGIS Enterprise users). When the user receives the invitation, they can sign in to the organization.
 
+   > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one SAML account as an administrator of your portal and demote or delete the [initial administrator account](https://enterprise.arcgis.com/en/portal/latest/install/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the portal website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
+  
 6. Provide metadata information for the IDP using one of the three options below:
    - **URL**—Choose this option if the URL of NetIQ Access Manager federation metadata is accessible by ArcGIS. The URL is usually `https://<host>:<port>/nidp/saml2/metadata` on the machine where NetIQ Access Manager is running.
+  
+      > **Note:** For ArcGIS Enterprise users, if your SAML IDP includes a self-signed certificate, you may encounter an error when attempting to specify the HTTPS URL of the metadata. This error occurs because ArcGIS Enterprise cannot verify the IDP's self-signed certificate. Alternatively, use HTTP in the URL, one of the other options below, or configure your IDP with a trusted certificate.
+     
    - **File**—Choose this option if the URL is not accessible by ArcGIS. Obtain the metadata from the URL above, save it as an XML file, and upload the file.
    - **Parameters specified here**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your NetIQ Access Manager administrator to obtain these.
 
@@ -43,6 +48,8 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Logout URL**—The IDP URL to use to sign out the currently signed in user. This value is automatically populated if defined in the IDP's metadata file. You can update this URL as needed.
    - **Entity ID**—Update this value to use a new entity ID to uniquely identify your ArcGIS organization to NetIQ Access Manager.
 
+    For ArcGIS Enterprise users, the **Encrypt Assertion** and **Enable signed request** settings use the certificate **samlcert** in the portal keystore. To use a new certificate, delete the **samlcert** certificate, create a certificate with the same alias (**samlcert**) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
+    
 8. Click **Save**.
 
 ## Register ArcGIS as the trusted service provider with NetIQ Access Manager
@@ -53,7 +60,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
    - Sign in to the NetIQ Access Manager administration console. This is usually available at `https://<host>:<port>/nps`.
    
-   - Browse to your identity server in the NetIQ admin console and click the **Shared Settings** tab. Under **Attribute Sets**, you'll see any attribute sets you've already created. Click **New** and create a new attribute set. Enter `ArcGISOnline` under **Set Name** and click **Next**.
+   - Browse to your identity server in the NetIQ admin console and click the **Shared Settings** tab. Under **Attribute Sets**, you'll see any attribute sets you've already created. Click **New** and create a new attribute set. Enter `ArcGISOnline` (or `Portal') under **Set Name** and click **Next**.
    
      ![Image-Create Attribute Set](https://github.com/Esri/idp/blob/main/Documentation/SAML/Images/NetIQAM-Images/Image-Create%20Attribute%20Set.png)
      
@@ -67,7 +74,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    
    ![Image-Add Attribute Mapping uid](https://github.com/Esri/idp/blob/main/Documentation/SAML/Images/NetIQAM-Images/Image-Add%20Attribute%20Mapping%20uid.png)
    
-   Click **Finish** in the **Create Attribute Set** wizard. This creates a new attribute set named **ArcGISOnline**.
+   Click **Finish** in the **Create Attribute Set** wizard. This creates a new attribute set named **ArcGISOnline** (or **Portal**).
 
 2. Follow the steps below to add ArcGIS as a trusted provider with NetIQ Access Manager.
 
