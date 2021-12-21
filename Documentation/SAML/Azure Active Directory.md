@@ -27,11 +27,11 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
 4. In the **Logins** section, click the **New SAML login** button, and select the **One identity provider** option. On the **Specify properties** page, type your organization's name (for example, `City of Redlands`). When users access the organization website, this text displays as part of the SAML sign-in option (for example, `Using your City of Redlands account`).
 
-   > **Note:** You can only register one SAML IDP, or [one federation of IDPs](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configure-a-federation-of-identity-providers.htm).
+   > **Note:** You can only register one SAML IDP, or [one federation of IDPs](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configure-a-federation-of-identity-providers.htm), for your portal. See [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) for ArcGIS Online instructions.
 
 5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator. Their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to register the necessary accounts with the organization using a [command line utility](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION1_29AF645AF75140698CA9879C3E059D39) or [sample Python script](https://enterprise.arcgis.com/en/portal/latest/administer/windows/example-add-members-to-the-portal.htm). Once the accounts have been registered, users can sign in to the organization.
 
-   > **Tip:** It's recommended that you designate at least one account as an administrator and demote or [delete the initial administrator account](https://enterprise.arcgis.com/en/portal/latest/administer/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the  website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
+   > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one account as an administrator and demote or [delete the initial administrator account](https://enterprise.arcgis.com/en/portal/latest/administer/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the  website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
 
 6. Provide metadata information for the IDP using one of the options below:
    - **File**—[Download the Azure AD metadata file](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#download-the-azure-ad-metadata-or-certificate) and upload the file to ArcGIS using the **File** option.
@@ -47,13 +47,13 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Update profiles on sign in**—Enable this option to have ArcGIS update users' `givenName` and `email address` attributes if they've changed since they last signed in.
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based enterprise groups to ArcGIS groups during the [group creation process](https://enterprise.arcgis.com/en/portal/latest/administer/windows/create-groups.htm).
    - **Logout URL**—The IDP URL is used to sign out the currently signed in user.
-   - **Entity ID**—Update this value to use a new entity ID to uniquely identify your portal to Azure AD.
+   - **Entity ID**—Update this value to use a new entity ID to uniquely identify your portal or organization to Azure AD.
 
-   The Encrypt Assertion and Enable signed request settings use the certificate samlcert in the portal keystore. To use a new certificate, delete the samlcert certificate, create a new certificate with the same alias (samlcert) following the steps in Import a certificate into the portal, and restart the portal.
+   The Encrypt Assertion and Enable signed request settings use the certificate samlcert in the portal keystore. To use a new certificate, delete the samlcert certificate, create a new certificate with the same alias (samlcert) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
   
 8. When finished, click **Update Identity Provider**.
 
-9. Click **Download service provider metadata** to download the portal's metadata file. Information in this file will be used to register the portal as the trusted service provider with Azure AD.
+9. Click **Download service provider metadata** to download the portal's or organization's metadata file. Information in this file will be used to register the portal or organization as the trusted service provider with Azure AD.
 
 ## Register ArcGIS as the trusted service provider with Azure AD
 
