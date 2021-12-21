@@ -29,8 +29,13 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
 5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization (using a [command line utility](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION1_29AF645AF75140698CA9879C3E059D39) for ArcGIS Enterprise users). When the user receives the invitation, they can sign in to the organization.
 
+   > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one SAML account as an administrator of your portal and demote or delete the [initial administrator account](https://enterprise.arcgis.com/en/portal/latest/install/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the portal website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
+
 6. Provide metadata information for the IDP using one of the options below:
    - **URL**—If the URL of AD FS federation metadata is accessible, select this option and enter the URL (for example, `https://<adfs-server>/federationmetadata/2007-06/federationmetadata.xml`).
+   
+       > **Note:** For ArcGIS Enterprise users, if your SAML IDP includes a self-signed certificate, you may encounter an error when attempting to specify the HTTPS URL of the metadata. This error occurs because ArcGIS Enterprise cannot verify the IDP's self-signed certificate. Alternatively, use HTTP in the URL, one of the other options below, or configure your IDP with a trusted certificate.
+      
    - **File**—Choose this option if the URL is not accessible. Download or obtain a copy of the federation metadata file from AD FS and upload the file to ArcGIS using the **File** option.
    - **Parameters specified here**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your AD FS administrator to obtain these.
 
@@ -45,6 +50,8 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based groups to ArcGIS groups during the [group creation process](https://doc.arcgis.com/en/arcgis-online/share-maps/create-groups.htm).
    - **Logout URL**—The IDP URL to use to sign out the currently signed-in user.
    - **Entity ID**—Update this value to use a new entity ID to uniquely identify your ArcGIS organization to AD FS.
+   
+   For ArcGIS Enterprise users, the Encrypt Assertion and Enable signed request settings use the certificate samlcert in the portal keystore. To use a new certificate, delete the samlcert certificate, create a certificate with the same alias (samlcert) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
 
 8. Click **Save**.
 
@@ -62,7 +69,11 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    
    - **Import data about the relying party published online or on a local network**: This option uses the URL metadata of your ArcGIS organization. The URL is `https://<url_key_for_org>.maps.arcgis.com/sharing/rest/portals/self/sp/metadata?token=<token>`, for example, `https://samltest.maps.arcgis.com/sharing/rest/portals/self/sp/metadata?token=G6943LMReKj_kqdAVrAiPbpRloAfE1fqp0eVAJ-IChQcV-kv3gW-gBAzWztBEdFY`.
 
-     Generate a token using https://www.arcgis.com/sharing/rest/generateToken. You must generate a token using HTTPS POST programmatically with JSON output format. For more information, see [ArcGIS REST API](https://developers.arcgis.com/rest/users-groups-and-items/generate-token.htm).
+     ArcGIS Online users can generate a token using https://www.arcgis.com/sharing/rest/generateToken. You must generate a token using HTTPS POST programmatically with JSON output format. For more information, see [ArcGIS REST API](https://developers.arcgis.com/rest/users-groups-and-items/generate-token.htm).
+     
+     ArcGIS Enterprise users can generate a token using https://webadaptorhost.domain.com/webadaptorname/sharing/rest/generateToken. When entering the URL on the Generate Token page, specify the fully qualified domain name of the AD FS server in the Webapp URL field. Selecting any other option, such as IP Address or IP Address of this request's origin, is not supported and may generate an invalid token.
+     
+     > **Note:** For ArcGIS Enterprise users, the arcgis portion of the above sample URL is the default name of the Web Adaptor application. If your web adaptor is named something other than arcgis, replace this portion of the URL with the name of your web adaptor.
      
    - **Import data about the relying party from a file**: This option uses a `metadata.xml` file from your ArcGIS organization. There are two ways you can get a metadata `.xml` file:
      
@@ -80,11 +91,14 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 6. **(Manual data source only)** For **Choose Profile**, choose the AD FS profile that's applicable in your environment.
 
 7. **(Manual data source only)** For **Configure URL**, check the **Enable support for the SAML 2.0 WebSSO protocol** box and enter the URL for the relying party SAML 2.0 SSO service.
-   The relying party URL must be the URL where AD FS sends the SAML response after authenticating the user. This must be an HTTPS URL: `https://<url_key_for_org>.maps.arcgis.com/sharing/rest/oauth2/saml/signin`.
+   The relying party URL must be the URL where AD FS sends the SAML response after authenticating the user. This must be an HTTPS URL.
+   
+   ArcGIS Online URL: `https://<url_key_for_org>.maps.arcgis.com/sharing/rest/oauth2/saml/signin`.
+   ArcGIS Enterprise URL: `https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin`
    
 8. **(Manual data source only)** For **Configure Identifiers**, enter the URL for the relying party trust identifier. 
 
-   This must be `<url_key_for_org>.maps.arcgis.com`.
+   This must be `<url_key_for_org>.maps.arcgis.com` (or) `portal.domain.com.arcgis`.
    
 9. For **Choose Issuance Authorization Rules**, choose **Permit all users to access this relying party**.
 
