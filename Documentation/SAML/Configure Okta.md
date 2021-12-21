@@ -81,9 +81,9 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
      `email` set to `user.email`
     
-    - Click **Next** and click **Finish**.
+6. Click **Next** and click **Finish**.
 
-    - You will now see the Sign On section of your newly created SAML application. To get the Okta IDP metadata, click the **Sign On** tab and click the **Identity Provider metadata** link.
+7. You will now see the Sign On section of your newly created SAML application. To get the Okta IDP metadata, click the **Sign On** tab and click the **Identity Provider metadata** link.
 
-    - Right-click the **People** tab and configure which Okta authenticated users will have access to in your ArcGIS Organization.
+8. Right-click the **People** tab and configure which Okta authenticated users will have access to in your ArcGIS Organization.
 
