@@ -51,7 +51,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Logout URL**—The IDP URL to use to sign out the currently signed-in user.
    - **Entity ID**—Update this value to use a new entity ID to uniquely identify your ArcGIS organization to AD FS.
    
-   For ArcGIS Enterprise users, the Encrypt Assertion and Enable signed request settings use the certificate samlcert in the portal keystore. To use a new certificate, delete the samlcert certificate, create a certificate with the same alias (samlcert) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
+    For ArcGIS Enterprise users, the **Encrypt Assertion** and **Enable signed request** settings use the certificate **samlcert** in the portal keystore. To use a new certificate, delete the **samlcert** certificate, create a certificate with the same alias (**samlcert**) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
 
 8. Click **Save**.
 
