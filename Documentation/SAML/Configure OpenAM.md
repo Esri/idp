@@ -47,7 +47,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
   
    - Click **Save**.
 
-**Register ArcGIS as the trusted service provider with OpenAM**
+## Register ArcGIS as the trusted service provider with OpenAM
 
 1. Configure a hosted IDP in OpenAM.
    
