@@ -51,50 +51,50 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
 1. Configure a hosted IDP in OpenAM.
    
-  - Sign in to the OpenAM administration console. This is usually available at `https://servername:port/<deploy_uri>/console`.
+   - Sign in to the OpenAM administration console. This is usually available at `https://servername:port/<deploy_uri>/console`.
   
-  - On the **Common Tasks** tab, click **Create Hosted Identity Provider**.
+   - On the **Common Tasks** tab, click **Create Hosted Identity Provider**.
   
-  - Create a hosted IDP and add it to a **Circle of Trust**. You can add it to an existing circle of trust if you already have it or create a new circle of trust.
+   - Create a hosted IDP and add it to a **Circle of Trust**. You can add it to an existing circle of trust if you already have it or create a new circle of trust.
 
-  - By default, the hosted IDP works with OpenDJ, the embedded user store that comes with OpenAM. If you want to connect OpenAM to any other user stores such as Active Directory, you need to create a new data source on the **Access Control** tab of the mainOpenAM administration console.
+   - By default, the hosted IDP works with OpenDJ, the embedded user store that comes with OpenAM. If you want to connect OpenAM to any other user stores such as Active Directory, you need to create a new data source on the **Access Control** tab of the mainOpenAM administration console.
 
 2. Configure ArcGIS as a trusted service provider with OpenAM.
 
-  - Obtain the metadata file of your ArcGIS organization and save it as an XML file.
+   - Obtain the metadata file of your ArcGIS organization and save it as an XML file.
   
-  - To get the metadata file, sign in as an administrator of your organization and open your organization page. Click the **Settings** tab and click **Security** on the left side of the page. In the **Logins** section, under **SAML login**, click the **Download service provider metadata** button.
+   - To get the metadata file, sign in as an administrator of your organization and open your organization page. Click the **Settings** tab and click **Security** on the left side of the page. In the **Logins** section, under **SAML login**, click the **Download service provider metadata** button.
   
-  - In the OpenAM administration console under **Common Tasks**, click **Register Remote Service Provider**.
+   - In the OpenAM administration console under **Common Tasks**, click **Register Remote Service Provider**.
   
-  - Select the **File** option for the metadata and upload the metadata XML file saved in the previous step.
+   - Select the **File** option for the metadata and upload the metadata XML file saved in the previous step.
   
-  - Add this service provider to the same circle of trust to which you added your IDP.
+   - Add this service provider to the same circle of trust to which you added your IDP.
   
 3. Configure the `NameID` format and attributes that OpenAM needs to send to ArcGIS after authenticating the user.
   
-  - In the OpenAM administration console, click the **Federation** tab. The tab contains the circle of trust you previously added and the service and IDP.
+   - In the OpenAM administration console, click the **Federation** tab. The tab contains the circle of trust you previously added and the service and IDP.
 
-  - Under **Entity Providers**, click your IDP.
+   - Under **Entity Providers**, click your IDP.
 
-  - On the **Assertion Content** tab, under **Name ID Format**, verify that `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is listed at the top. This is the format of `NameID` that ArcGIS will request in its SAML request to OpenAM.
+   - On the **Assertion Content** tab, under **Name ID Format**, verify that `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is listed at the top. This is the format of `NameID` that ArcGIS will request in its SAML request to OpenAM.
 
-  - Under **Name ID Value Map**, map an attribute from the user's profile, such as `mail` or `upn`, that will be returned as `NameID` to ArcGIS after the user is authenticated.
+   - Under **Name ID Value Map**, map an attribute from the user's profile, such as `mail` or `upn`, that will be returned as `NameID` to ArcGIS after the user is authenticated.
 
-    Example: `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified =upn`
+     Example: `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified =upn`
 
-  - Click the **Assertion Processing** tab in the IDP. Under **Attribute Mapper**, configure attributes from the user profile that you want to be sent to ArcGIS.
+   - Click the **Assertion Processing** tab in the IDP. Under **Attribute Mapper**, configure attributes from the user profile that you want to be sent to ArcGIS.
 
-    Click **Save** to save the `NameID` format and the attribute content changes.
+     Click **Save** to save the `NameID` format and the attribute content changes.
 
-  - On the **Federation** tab of the OpenAM administration console, browse to the ArcGIS service provider under **Entity Providers**.
+   - On the **Federation** tab of the OpenAM administration console, browse to the ArcGIS service provider under **Entity Providers**.
 
-  - On the **Assertion Content** tab, under **Encryption**, select the **Assertion** option if you chose the advanced setting **Encrypt Assertion** when registering OpenAM as the SAML IDP with ArcGIS.
+   - On the **Assertion Content** tab, under **Encryption**, select the **Assertion** option if you chose the advanced setting **Encrypt Assertion** when registering OpenAM as the SAML IDP with ArcGIS.
 
-  - Under **Name ID Format**, verify that `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is listed at the top. This is the format of `NameID` that ArcGIS will request in its SAML request to OpenAM.
+   - Under **Name ID Format**, verify that `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified` is listed at the top. This is the format of `NameID` that ArcGIS will request in its SAML request to OpenAM.
 
-  - Click the **Assertion Processing** tab in the IDP. Under **Attribute Mapper**, configure attributes from the user profile that you want to be sent to ArcGIS.
+   - Click the **Assertion Processing** tab in the IDP. Under **Attribute Mapper**, configure attributes from the user profile that you want to be sent to ArcGIS.
 
-  - Click **Save** to save the **Name ID Format** and the attribute content changes.
+   - Click **Save** to save the **Name ID Format** and the attribute content changes.
 
 4. Restart the web server where OpenAM is deployed.
