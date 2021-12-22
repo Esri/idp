@@ -32,7 +32,9 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 6. Provide metadata information for the IDP using one of the three options below:
 
    - **URL**—Choose this option if the URL of OpenAM federation metadata is accessible by ArcGIS. The URL is usually https://<host>:<port>/openam/saml2/jsp/exportmetadata.jsp.
+   
    - **File**—Choose this option if the URL is not accessible by ArcGIS. Obtain the metadata from the URL above, save it as an XML file, and upload the file.
+   
    - **Parameters specified here**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your OpenAM administrator to obtain these.
 
 7. Configure the advanced settings as applicable:
