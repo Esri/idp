@@ -85,5 +85,77 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
    `idp.authn.LDAP.bindDNCredential = userpassword`
 
+3. Configure the user attributes to be returned by Shibboleth.
 
- 
+   - Edit `SHIBBOLETH_HOME/conf/attribute-resolver.xml`. Comment or delete all existing example attribute definitions and data connectors.
+
+   - Copy the definitions for `mail`, `givenName`, and `surname` from the `SHIBBOLETH_HOME/conf/attribute-resolver-full.xml` file to the `SHIBBOLETH_HOME/conf/attribute-resolver.xml` file.
+
+   - Copy the LDAP Data Connector section from `SHIBBOLETH_HOME/conf/attribute-resolver-ldap.xml` to `SHIBBOLETH_HOME/conf/attribute-resolver.xml`. Copy the definition for uid or any other attribute you want to return as the `NAMEID` attribute.
+
+   - Configure the attributes to release to the service provider. Edit the `SHIBBOLETH_HOME/conf/attribute-filter.xml` file and add the following:
+
+     ```
+     <AttributeFilterPolicy id="ArcGIS">
+     	<PolicyRequirementRule xsi:type="Requester" value="[The Entity ID of your ArcGIS Online organization]" />
+			<AttributeRule attributeID="<NameID Attribute>">
+				<PermitValueRule xsi:type="ANY" />
+			</AttributeRule>
+
+			<AttributeRule attributeID="givenName">
+				<PermitValueRule xsi:type="ANY" />
+			</AttributeRule>
+
+			<AttributeRule attributeID="mail">
+				<PermitValueRule xsi:type="ANY" />
+			</AttributeRule>
+		</AttributeFilterPolicy>
+     ```
+4. Edit the `SHIBBOLETH_HOME/conf/relying-party.xml` file.
+
+   - Copy the XML code below and paste it inside the shibboleth.RelyingPartyOverrides elements to override the default configuration for the Shibboleth Identity Provider:   
+     
+     ```
+     <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS Online organization]">
+     	<property name="profileConfigurations">
+       		<list>
+         		<bean parent="SAML2.SSO" 
+          		p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" />
+      		</list>
+     	</property>
+     </bean>
+     ```
+     
+     The `nameIDFormatPrecedence` parameter instructs the IDP to send the SAML name ID attribute in the `unspecified` format, which is required by ArcGIS Online and Portal for ArcGIS.
+   
+   - Turn off assertion encryption in the Shibboleth Identity Provider by setting the `encryptAssertions` parameter to `false`.
+    
+     ```
+     <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS Online organization]">
+     	<property name="profileConfigurations">
+		<list>
+			<bean parent="SAML2.SSO" 
+				p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" 
+				p:encryptAssertions="false" />
+		</list>
+     	</property>
+     </bean>
+     ```
+   
+   - Edit the `SHIBBOLETH_HOME/conf/saml-nameid.xml` file and replace this section:
+     
+     ```
+     	<bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+   	p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+   	p:attributeSourceIds="#{ {'mail'} }" />
+     ```
+     
+     with the following:
+     
+     ```
+     <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+            p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+            p:attributeSourceIds="#{ {'your-name-id-attribute'} }" />
+     ```
+     
+6. Restart the Shibboleth daemon (Linux) or service (Windows).
