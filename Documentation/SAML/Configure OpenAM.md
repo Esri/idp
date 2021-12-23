@@ -27,12 +27,16 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
    > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS organization. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP. See [one federation of IDPs](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configure-a-federation-of-identity-providers.htm) for ArcGIS Enterprise instructions. 
 
-5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization. When the user receives the invitation, they can sign in to the organization.
+5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization (using a [command line utility](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION1_29AF645AF75140698CA9879C3E059D39) for ArcGIS Enterprise users). When the user receives the invitation, they can sign in to the organization.
+
+   > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one SAML account as an administrator of your portal and demote or delete the [initial administrator account](https://enterprise.arcgis.com/en/portal/latest/install/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the portal website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
 
 6. Provide metadata information for the IDP using one of the three options below:
 
    - **URL**—Choose this option if the URL of OpenAM federation metadata is accessible by ArcGIS. The URL is usually `https://<host>:<port>/openam/saml2/jsp/exportmetadata.jsp`.
-   
+  
+       > **Note:** For ArcGIS Enterprise users, if your SAML IDP includes a self-signed certificate, you may encounter an error when attempting to specify the HTTPS URL of the metadata. This error occurs because ArcGIS Enterprise cannot verify the IDP's self-signed certificate. Alternatively, use HTTP in the URL, one of the other options below, or configure your IDP with a trusted certificate.
+       
    - **File**—Choose this option if the URL is not accessible by ArcGIS. Obtain the metadata from the URL above, save it as an XML file, and upload the file.
    
    - **Parameters specified here**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your OpenAM administrator to obtain these.
@@ -44,7 +48,9 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Entity ID**—Update this value to use a new entity ID to uniquely identify your ArcGIS organization to OpenAM.
    - **Update profiles on sign in**—Enable this option to automatically synchronize account information (full name and email address) stored in ArcGIS user profiles with the latest account information received from the IDP. Enabling this option allows your organization to verify, when a user signs in with a SAML login, whether the IDP information has changed since the account was created and, if so, to update the user's ArcGIS account profile accordingly.
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based groups to ArcGIS groups during the group creation process.
-     
+
+    For ArcGIS Enterprise users, the **Encrypt Assertion** and **Enable signed request** settings use the certificate **samlcert** in the portal keystore. To use a new certificate, delete the **samlcert** certificate, create a certificate with the same alias (**samlcert**) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
+    
      > **Note:** Currently, **Propagate logout to Identity Provider** and **Logout URL** are not supported.
   
    - Click **Save**.
