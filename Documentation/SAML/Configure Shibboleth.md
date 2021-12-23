@@ -27,8 +27,10 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
    > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS organization. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP. See [one federation of IDPs](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configure-a-federation-of-identity-providers.htm) for ArcGIS Enterprise instructions. 
 
-5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization. When the user receives the invitation, they can sign in to the organization.
+5. Choose **Automatically** or **Upon invitation from an administrator** to specify how users can join the organization. Selecting the first option allows users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization (using a [command line utility](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION1_29AF645AF75140698CA9879C3E059D39) for ArcGIS Enterprise users). When the user receives the invitation, they can sign in to the organization.
 
+   > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one SAML account as an administrator of your portal and demote or delete the [initial administrator account](https://enterprise.arcgis.com/en/portal/latest/install/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the portal website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
+   
 6. Provide metadata information for the IDP using one of the two options below:
 
    - **File**—By default, Shibboleth provides the IdP metadata file in `SHIBBOLETH_HOME/metadata`. If the metadata file is accessible, choose the **File** option for the metadata of the SAML IDP and browse to the `SHIBBOLETH_HOME/metadata/idp-metadata.xml` file. ArcGIS validates the signature in SAML assertion responses from Shibboleth using the first signing certificate in the IDP metadata file. However, by default, the first signature listed in the Shibboleth IDP metadata file is for back channel TLS communication, while the second one is for signing assertion responses. You will need to either comment out the first signature or move it below the second one, and use the updated metadata file to register Shibboleth with ArcGIS. The signatures are defined using the `<KeyDescriptor use="signing">` element in the metadata file.
@@ -47,6 +49,8 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based groups to ArcGIS groups during the [group creation process](https://doc.arcgis.com/en/arcgis-online/share-maps/create-groups.htm).
 
+    For ArcGIS Enterprise users, the **Encrypt Assertion** and **Enable signed request** settings use the certificate **samlcert** in the portal keystore. To use a new certificate, delete the **samlcert** certificate, create a certificate with the same alias (**samlcert**) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
+    
      > **Note:** Currently, Propagate logout to Identity Provider and Logout URL are not supported.
 
 8. Click **Save**.
@@ -116,7 +120,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - Copy the XML code below and paste it inside the shibboleth.RelyingPartyOverrides elements to override the default configuration for the Shibboleth Identity Provider:   
      
      ```
-     <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS Online organization]">
+     <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS organization]">
      	<property name="profileConfigurations">
        		<list>
          		<bean parent="SAML2.SSO" 
@@ -131,7 +135,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - Turn off assertion encryption in the Shibboleth Identity Provider by setting the `encryptAssertions` parameter to `false`.
     
      ```
-     <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS Online organization]">
+     <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS organization]">
      	<property name="profileConfigurations">
 		<list>
 			<bean parent="SAML2.SSO" 
@@ -145,9 +149,11 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - Edit the `SHIBBOLETH_HOME/conf/saml-nameid.xml` file and replace this section:
      
      ```
-     	<bean parent="shibboleth.SAML2AttributeSourcedGenerator"
-   	p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-   	p:attributeSourceIds="#{ {'mail'} }" />
+     <!--	
+     <bean parent="shibboleth.SAML2AttributeSourcedGenerator"
+   		p:format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+   		p:attributeSourceIds="#{ {'mail'} }" />
+     -->
      ```
      
      with the following:
