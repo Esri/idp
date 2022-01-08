@@ -111,12 +111,16 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
      
      > **Note:** Selecting the **One identity provider** option allows you to register one SAML IDP for your ArcGIS. To authenticate users with SAML logins from multiple IDPs, [register a SAML-based federation](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_STEP_BD2FE74A6D9D41D88499035A69801EE6) instead of a single IDP. See [one federation of IDPs](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configure-a-federation-of-identity-providers.htm) for ArcGIS Enterprise instructions. 
 
-   - Choose if users will be able to join the organization **Automatically** or **Upon invitation from an administrator**. Selecting the first option enables users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization. When the user receives the invitation, they will be able to sign in to the organization.
+   - Choose if users will be able to join the organization **Automatically** or **Upon invitation from an administrator**. Selecting the first option enables users to sign in to the organization with their SAML login without any intervention from an administrator; their account is registered with the organization automatically the first time they sign in. The second option requires the administrator to invite the necessary users to the organization (using a [command line utility](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION1_29AF645AF75140698CA9879C3E059D39) for ArcGIS Enterprise users). When the user receives the invitation, they will be able to sign in to the organization.
 
+     > **Tip** For ArcGIS Enterprise users, it's recommended that you designate at least one SAML account as an administrator of your portal and demote or delete the [initial administrator account](https://enterprise.arcgis.com/en/portal/latest/install/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the portal website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
+     
     - Provide metadata information for the IDP using one of the three options below:
     
       **URL**—Choose this option if the URL of the SimpleSAMLphp federation metadata is accessible. This is usually `https://<simpleSAML-server>/<saml-app-name>/saml2/idp/metadata.php`.
 
+      > **Note:** For ArcGIS Enterprise users, ff your SAML IDP includes a self-signed certificate, you may encounter an error when attempting to specify the HTTPS URL of the metadata. This error occurs because ArcGIS Enterprise cannot verify the IDP's self-signed certificate. Alternatively, use HTTP in the URL, use one of the other options below, or configure your IDP with a trusted certificate.
+      
       **File**—Choose this option if the URL is not accessible. Save the metadata from the URL as an XML file and upload the file to ArcGIS using the **File** option.
 
       **Parameters specified here**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your SimpleSAMLphp administrator to obtain these.
@@ -130,6 +134,8 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based groups to ArcGIS groups during the [group creation process](https://doc.arcgis.com/en/arcgis-online/share-maps/create-groups.htm).
    - **Logout URL**—The IDP URL to use to sign out the currently signed in user. The logout URL is usually `https://idphost.domain.com/simplesaml/saml2/idp/SingleLogoutService.php`. This URL is defined in the SingleLogoutService element in the IDP's metadata file. The metadata file URL is usually `https://[simpleSAML-server]/simplesaml/saml2/idp/metadata.php`.
 
+     For ArcGIS Enterprise users, the **Encrypt Assertion** and **Enable signed request** settings use the certificate **samlcert** in the portal keystore. To use a new certificate, delete the **samlcert** certificate, create a certificate with the same alias (**samlcert**) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
+     
 5. Click **Save**.
 
 ## Register ArcGIS as the trusted service provider with SimpleSAMLphp
@@ -148,6 +154,8 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
       Below is an example of the added service provider's configuration in the metadata file.
 
       ```
+      ArcGIS Online example:
+      
       /* The following is an ArcGIS Online organization service provider */
           $metadata['citygis.maps.arcgis.com'] = array (
           'entityid' => ' citygis.maps.arcgis.com',
@@ -199,6 +207,60 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
             ),
           );
       ```
+      ```
+      ArcGIS Enterprise example:
+      
+      /* The following is an ArcGIS Enterprise organization service provider */
+	$metadata['webadaptorhost.domain.com.webadaptorname'] = array (
+  	'entityid' => ' webadaptorhost.domain.com.webadaptorname',
+  	'name' =>
+  	array (
+    	'en' => 'portal ',
+ 	 ),
+  	'description' =>
+  	array (
+    	'en' => 'portal ',
+  	),
+  	'OrganizationName' =>
+ 	 array (
+   	 'en' => 'portal ',
+ 	 ),
+	 'OrganizationDisplayName' =>
+  	array (
+    	'en' => 'portal ',
+  	),
+  	'url' =>
+  	array (
+    	'en' => 'https://webadaptorhost.domain.com/webadaptorname',
+  	),
+  	'OrganizationURL' =>
+  	array (
+    	'en' => 'https://webadaptorhost.domain.com/webadaptorname',
+  	),
+  	'contacts' =>
+  	array (
+  	),
+  	'metadata-set' => 'saml20-sp-remote',
+  	'AssertionConsumerService' =>
+  	array (
+    	0 =>
+   	array (
+      		'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      		'Location' => 'https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin',
+      		'index' => 1,
+    	),
+    	1 =>
+    	array (
+      		'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      		'Location' => 'https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin',
+      		'index' => 2,
+    	),
+  	),
+  	'SingleLogoutService' =>
+  	array (
+  	),
+	);
+	```
 
 2. Configure the attribute that gets passed as `NameID` to ArcGIS from the SimpleSAMLphp IdP after authenticating the user. To do this, add the attribute at the end of the service provider’s configuration you added in the previous step.
 
