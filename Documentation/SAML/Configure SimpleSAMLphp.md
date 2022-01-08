@@ -211,55 +211,55 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
       ArcGIS Enterprise example:
       
       /* The following is an ArcGIS Enterprise organization service provider */
-	$metadata['webadaptorhost.domain.com.webadaptorname'] = array (
-  	'entityid' => ' webadaptorhost.domain.com.webadaptorname',
-  	'name' =>
-  	array (
-    	'en' => 'portal ',
- 	 ),
-  	'description' =>
-  	array (
-    	'en' => 'portal ',
-  	),
-  	'OrganizationName' =>
- 	 array (
-   	 'en' => 'portal ',
- 	 ),
-	 'OrganizationDisplayName' =>
-  	array (
-    	'en' => 'portal ',
-  	),
-  	'url' =>
-  	array (
-    	'en' => 'https://webadaptorhost.domain.com/webadaptorname',
-  	),
-  	'OrganizationURL' =>
-  	array (
-    	'en' => 'https://webadaptorhost.domain.com/webadaptorname',
-  	),
-  	'contacts' =>
-  	array (
-  	),
-  	'metadata-set' => 'saml20-sp-remote',
-  	'AssertionConsumerService' =>
-  	array (
-    	0 =>
-   	array (
-      		'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      		'Location' => 'https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin',
-      		'index' => 1,
-    	),
-    	1 =>
-    	array (
-      		'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      		'Location' => 'https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin',
-      		'index' => 2,
-    	),
-  	),
-  	'SingleLogoutService' =>
-  	array (
-  	),
-	);
+		$metadata['webadaptorhost.domain.com.webadaptorname'] = array (
+  		'entityid' => ' webadaptorhost.domain.com.webadaptorname',
+  		'name' =>
+  		array (
+    		'en' => 'portal ',
+ 	 	),
+  		'description' =>
+  		array (
+    		'en' => 'portal ',
+  		),
+  		'OrganizationName' =>
+ 		 array (
+   	 	'en' => 'portal ',
+ 	 	),
+	 	'OrganizationDisplayName' =>
+  		 array (
+    		'en' => 'portal ',
+  		),
+  		'url' =>
+  		array (
+    		'en' => 'https://webadaptorhost.domain.com/webadaptorname',
+  		),
+  		'OrganizationURL' =>
+  		array (
+    		'en' => 'https://webadaptorhost.domain.com/webadaptorname',
+  		),
+  		'contacts' =>
+  		array (
+  		),
+  		'metadata-set' => 'saml20-sp-remote',
+  		'AssertionConsumerService' =>
+  		array (
+    		0 =>
+   		array (
+      			'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      			'Location' => 'https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin',
+      			'index' => 1,
+    		),
+    		1 =>
+    		array (
+      			'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      			'Location' => 'https://webadaptorhost.domain.com/webadaptorname/sharing/rest/oauth2/saml/signin',
+      			'index' => 2,
+    		),
+  		),
+  		'SingleLogoutService' =>
+  		array (
+  		),
+		);
 	```
 
 2. Configure the attribute that gets passed as `NameID` to ArcGIS from the SimpleSAMLphp IdP after authenticating the user. To do this, add the attribute at the end of the service provider’s configuration you added in the previous step.
