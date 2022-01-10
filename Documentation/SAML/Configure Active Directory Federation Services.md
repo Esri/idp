@@ -73,8 +73,6 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
      
      ArcGIS Enterprise users can generate a token using https://webadaptorhost.domain.com/webadaptorname/sharing/rest/generateToken. When entering the URL on the **Generate Token** page, specify the fully qualified domain name of the AD FS server in the **Webapp URL** field. Selecting any other option, such as **IP Address** or **IP Address of this request's origin**, is not supported and may generate an invalid token.
      
-     > **Note:** For ArcGIS Enterprise users, the `arcgis` portion of the above sample URL is the default name of the Web Adaptor application. If your web adaptor is named something other than `arcgis`, replace this portion of the URL with the name of your web adaptor.
-     
    - **Import data about the relying party from a file**: This option uses a `metadata.xml` file from your ArcGIS organization. There are two ways you can get a metadata `.xml` file:
      
       - On the organization page, click the **Settings** tab and click **Security** on the left side of the page. In the **Logins** sections, under **SAML login**, click the **Download service provider metadata** button to download the metadata file for your organization.
