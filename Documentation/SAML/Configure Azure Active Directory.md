@@ -41,7 +41,8 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    - **Parameters**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your Azure AD administrator to obtain these.
 
 7. Configure the following advanced settings as applicable:
-   - **Encrypt Assertion**—Enable this option to encrypt the Azure AD SAML assertion responses.
+   - **Encrypt Assertion**—This option prepares ArcGIS to decrypt the Azure AD SAML assertion responses.
+   > **Note** To enable assertion encryption, extract the X.509 certificate from the ArcGIS service provider metadata file using a text editor and [import it into Azure AD] (https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/howto-saml-token-encryption)
    - **Enable signed request**—Enable this option to have ArcGIS sign the SAML authentication request sent to Azure AD.
    > **Note** [Request signatures are not validated by Azure AD at this time](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#signature).
    - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS use a logout URL to sign out the user from Azure AD. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, check **Enable Signed Request**.
