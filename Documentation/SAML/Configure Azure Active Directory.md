@@ -43,6 +43,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 7. Configure the following advanced settings as applicable:
    - **Encrypt Assertion**—Enable this option to encrypt the Azure AD SAML assertion responses.
    - **Enable signed request**—Enable this option to have ArcGIS sign the SAML authentication request sent to Azure AD.
+   > **Note** [Request signatures are not validated by Azure AD at this time](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#signature).
    - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS use a logout URL to sign out the user from Azure AD. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, check **Enable Signed Request**.
    - **Update profiles on sign in**—Enable this option to have ArcGIS update users' `givenName` and `email address` attributes if they've changed since they last signed in.
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based enterprise groups to ArcGIS groups during the [group creation process](https://enterprise.arcgis.com/en/portal/latest/administer/windows/create-groups.htm).
