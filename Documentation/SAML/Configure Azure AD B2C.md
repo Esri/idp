@@ -48,7 +48,8 @@ Out-of-the-box, Azure AD B2C provides some configurable user flow templates. The
    > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one account as an administrator and demote or [delete the initial administrator account](https://enterprise.arcgis.com/en/portal/latest/administer/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the  website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
 
 6. Provide metadata information for the IDP using the URL option. 
-   - **URL**—https://**b2c-tenant-name**.b2clogin.com/**b2c-tenant-name**.onmicrosoft.com/**policy-name**/Samlp/metadata. The policy name will usually be B2C_1A_SIGNUP_SIGNIN_SAML. You can find it under the Identity Experience Framework section in the Azure Portal.
+   - **URL**—https://**b2c-tenant-name**.b2clogin.com/**b2c-tenant-name**.onmicrosoft.com/**policy-name**/Samlp/metadata. 
+   > **Note** The policy name will usually be B2C_1A_SIGNUP_SIGNIN_SAML. You can find it under the Identity Experience Framework section in the Azure Portal.
 
 7. Configure the following advanced settings as applicable:
    - **Encrypt Assertion**—Enable this option to prepare ArcGIS to receive an encrypted SAML assertion response from Azure AD. 
@@ -57,7 +58,7 @@ Out-of-the-box, Azure AD B2C provides some configurable user flow templates. The
    
    - **Enable signed request**—Enable this option to have ArcGIS sign the SAML authentication request sent to Azure AD 
    
-   > **Note** [(Request signatures are not validated by Azure AD at this time)](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#signature).
+   > **Note** [Request signatures are not validated by Azure AD at this time](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#signature).
    
    - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS use a logout URL to sign out the user from Azure AD. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, check **Enable Signed Request**.
    - **Update profiles on sign in**—Enable this option to have ArcGIS update users' `givenName` and `email address` attributes if they've changed since they last signed in.
