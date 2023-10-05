@@ -145,7 +145,23 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
      	</property>
      </bean>
      ```
-   
+     > **Note:** 
+     > Once you are able to successfully log in to ArcGIS, and you wish to turn on  encryption assertions, you must sign both the request and response section of the assertion response.
+     > ```
+     > <bean parent="RelyingPartyByName" c:relyingPartyIds="[The Entity ID of your ArcGIS organization]">
+     > 	<property name="profileConfigurations">
+     > 	<list>
+     > 		<bean parent="SAML2.SSO" 
+     > 			p:nameIDFormatPrecedence="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" 
+     >			p:signResponses="true"
+     >			p:signAssertions="true"
+     >			p:encryptAssertions="true" />
+     > 	</list>
+     > </property>
+     > </bean>
+     > ```
+    
+
    - Edit the `SHIBBOLETH_HOME/conf/saml-nameid.xml` file and replace this section:
      
      ```
