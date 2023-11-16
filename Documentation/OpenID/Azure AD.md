@@ -109,7 +109,7 @@
 ![17](https://github.com/Esri/idp/assets/51384051/725de3fd-f80d-43a8-9234-cbce19f7601b)
 
 
-19. Confirm that you are able to sign in, then select Sign Out to confirm a successfull user log out.
+19. Confirm that you are able to sign in, then select Sign Out to confirm a successful user log out.
 
 
 ![18](https://github.com/Esri/idp/assets/51384051/9858f840-f034-41d3-80f0-0650ba6bc03b)
