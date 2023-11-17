@@ -8,8 +8,8 @@
 
 ## Setup OpenID Connect logins for ArcGIS
 
-> [!NOTE]  
-> The configuration described below is for Azure public cloud only. Endpoints for sovereign Azure clouds (Azure Government, China Azure Cloud and Azure Germany) are separate.
+   > [!NOTE]  
+   > The configuration described below is for Azure public cloud only. Endpoints for sovereign Azure clouds (Azure Government, China Azure Cloud and Azure Germany) are separate.
 1. Sign in to the Azure portal, https://portal.azure.com/.
 
 2.	Click on the Azure portal menu and select Microsoft Entra ID.
@@ -27,7 +27,8 @@
 4.	Enter a user-facing display name for the app. Under Redirect URI, select Web as the platform, and then enter https://jwt.ms (This is an Azure utility can be used for troubleshooting). Select Register.
 
    > [!NOTE]  
-   > For Supported account types, use the default option: Accounts in this organizational directory only. ArcGIS currently only supports the registration of a single OIDC provider.
+   > For Supported account types, use the default option: Accounts in this organizational
+   > directory only. ArcGIS currently only supports the registration of a single OIDC provider.
 
    <img src="https://github.com/Esri/idp/assets/51384051/1734018f-1655-4564-a5e1-3a6910bec10f" width="720">
 
@@ -45,11 +46,12 @@
 
 
 7. Select the copy icon next to the secret Value and save this in a text document as Registered client secret.
-
-    > [!WARNING]
-    > If you do not copy and save the Secret value at this moment, you will be unable to retrieve it once you navigate away from this page, and will need to create a new secret. You do not need to copy the Secret ID.
+   
+> [!WARNING]
+> If you do not copy and save the Secret value at this moment, you will be unable to retrieve it once you
+> navigate away from this page, and will need to create a new secret. You do not need to copy the Secret ID.
  
-      <img src="https://github.com/Esri/idp/assets/51384051/32bdeb20-b50a-436b-bc3e-f78c5d4d0213" width="720">
+   <img src="https://github.com/Esri/idp/assets/51384051/32bdeb20-b50a-436b-bc3e-f78c5d4d0213" width="720">
 
 
 8. Select Overview and copy the Application (client) ID value. Using any text\word editor of your choice, save this value, in a text document, as Registered client id.
