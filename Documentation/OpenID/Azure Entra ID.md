@@ -144,6 +144,9 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
  - Select Configure login, next to your OpenID connect login registration.
  - Enable the option: Use PKCE enhanced Authorization Code Flow and select Save.
 
+> [!NOTE]  
+> If you disable the *Use PKCE enhanced Authorization Code Flow* option in ArcGIS, you must switch your platform, for the Azure app registration, back to Web.
+
 # Troubleshoot OpenID Connect login issues
 
 ### Verify the Azure app client secret
