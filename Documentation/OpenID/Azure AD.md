@@ -142,7 +142,7 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
 #### Configure ArcGIS for PKCE
  - Sign in to your ArcGIS web site and navigate to Settings > Security > Logins.
  - Select Configure login, next to your OpenID connect login registration.
- - Enable the option, Use PKCE enhanced Authorization Code Flow and select Save.
+ - Enable the option: Use PKCE enhanced Authorization Code Flow and select Save.
 
 # Troubleshoot OpenID Connect login issues
 
