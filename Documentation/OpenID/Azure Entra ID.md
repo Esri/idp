@@ -24,7 +24,7 @@
 ![New-App-Registration](https://github.com/Esri/idp/assets/51384051/bbf6a8c3-5e4a-4d1a-88b4-a94294f50141)
 
 
-4.	Enter a user-facing display name for the app. Under Redirect URI, select Web as the platform, and then enter https://jwt.ms. Select Register.
+4.	Enter a user-facing display name for the app. Under Redirect URI, select Web as the platform, and then enter https://jwt.ms (This is an Azure utility can be used for troubleshooting). Select Register.
 
 
 ![App-Details](https://github.com/Esri/idp/assets/51384051/1734018f-1655-4564-a5e1-3a6910bec10f)
@@ -145,6 +145,18 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
  - Enable the option: Use PKCE enhanced Authorization Code Flow and select Save.
 
 # Troubleshoot OpenID Connect login issues
+
+### Verify the Azure app client secret
+
+ - Sign in to your ArcGIS web site and navigate to Settings > Security > Logins.
+ - Select Configure login, next to your OpenID connect login registration.
+ - Under Registered client secret, select Show client secret.
+ - In a new browser window or tab, sign in to the Azure portal, https://portal.azure.com/.
+ - Click on the Azure portal menu and select Microsoft Entra ID.
+ - Under Manage, select App registrations, then select All applications.
+ - Select the app registration for your ArcGIS Service Provider.
+ - Under Manage, select Certificates & secrets.
+ - Verify that the ArcGIS client secret starts with the same characters as the client secret Value in Azure. The Azure Secret ID cannot be used as the ArcGIS client secret.
 
 ### Examine the Azure id_token
 
