@@ -25,7 +25,8 @@
 
 
 4.	Enter a user-facing display name for the app. Under Redirect URI, select Web as the platform, and then enter https://jwt.ms (This is an Azure utility can be used for troubleshooting). Select Register.
-
+> [!NOTE]  
+> For Supported account types, use the default option: Accounts in this organizational directory only. ArcGIS currently only supports the registration of a single OIDC provider.
 
 ![App-Details](https://github.com/Esri/idp/assets/51384051/1734018f-1655-4564-a5e1-3a6910bec10f)
 
