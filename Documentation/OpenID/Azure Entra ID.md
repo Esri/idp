@@ -96,13 +96,13 @@
 14. Navigate back to the App registration in the Azure portal. Under Manage, select Authentication, and then select Add URI. Paste the ArcGIS Login Redirect URI here and select Save.
 
 
-      <img src="https://github.com/Esri/idp/assets/51384051/283332658-76c0ab74-04e3-4113-9a11-90a2e9171bdc" width="720">
+      <img src="https://github.com/Esri/idp/assets/51384051/76c0ab74-04e3-4113-9a11-90a2e9171bdc" width="720">
 
 
 15. Navigate to your ArcGIS web site and select the Microsoft Entra ID login created at Step 12. 
 
 
-      <img src="https://github.com/Esri/idp/assets/51384051/51384051/d19aa968-126d-48f6-8c47-faf7183f3f71" width="720">
+      <img src="https://github.com/Esri/idp/assets/51384051/d19aa968-126d-48f6-8c47-faf7183f3f71" width="720">
 
 
 16. Enter your Azure Entra ID user credentials.
