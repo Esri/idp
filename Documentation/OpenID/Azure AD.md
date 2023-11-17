@@ -2,9 +2,9 @@
 
 ### In this article
 
-[Setup OpenID Connect logins for ArcGIS](#setup-openid-connect-logins-for-arcgis "Setup OpenID Connect logins for ArcGIS")
-
-[Troubleshoot OpenID Connect login issues](#troubleshoot-openid-connect-login-issues "Troubleshoot OpenID Connect login issues")
+ * [Setup OpenID Connect logins for ArcGIS](#setup-openid-connect-logins-for-arcgis "Setup OpenID Connect logins for ArcGIS")
+    * [Enable PKCE for OpenID Connect logins](#enable-pkce-for-openid-connect-logins "Enable PKCE")
+ * [Troubleshoot OpenID Connect login issues](#troubleshoot-openid-connect-login-issues "Troubleshoot OpenID Connect login issues")
 
 ## Setup OpenID Connect logins for ArcGIS
 
@@ -86,7 +86,7 @@
       - For Let new members join, select Automatically. Joining via invitations is currently unsupported for Azure Entra ID.
       - For Provider scopes/permissions, enter the value: openid profile email.
       - Enable the option: Send access token in header.
-      - For ArGIS username field\claim name, enter preferred_username.
+      - For ArGIS username field\claim name, enter preferred_username. You may also choose to use any other id_token attribute of your choice, such as email.
 
 
 ![ArcGIS-OIDC-params](https://github.com/Esri/idp/assets/51384051/aa51e4ad-7e57-40a1-be0b-2fb0b7ec190e)
@@ -123,6 +123,26 @@
 
 ![Logout](https://github.com/Esri/idp/assets/51384051/3ac117e2-d1de-4058-855c-328dc223f5f6)
 
+
+### Enable PKCE for OpenID Connect logins
+
+If you have a requirement to use PKCE, which is recommended when authenticating on native or mobile applications, you will need update your configuration in both Azure and ArcGIS:
+
+#### Configure Azure Entra ID for PKCE
+ - Sign in to the Azure portal, https://portal.azure.com/.
+ - Click on the Azure portal menu and select Microsoft Entra ID.
+ - Under Manage, select App registrations, then select All applications.
+ - Select the app registration for your ArcGIS Service Provider.
+ - Under Manage, select Authentication.
+ - Under Platform Configurations, your ArcGIS Login Redirect URI will be listed under the platform type: Web. Copy your ArcGIS Login Redirect URI.
+ - Delete the ArcGIS Login Redirect URI and select Save.
+ - Select Add a platform, then select Single-page application. Paste your ArcGIS Login Redirect URI and select Configure.
+ - Scroll down to the Implicit grant and hybrid flows section. Enable Access tokens and ID tokens, then select Save.
+
+#### Configure ArcGIS for PKCE
+ - Sign in to your ArcGIS web site and navigate to Settings > Security > Logins.
+ - Select Configure login, next to your OpenID connect login registration.
+ - Enable the option, Use PKCE enhanced Authorization Code Flow and select Save.
 
 # Troubleshoot OpenID Connect login issues
 
