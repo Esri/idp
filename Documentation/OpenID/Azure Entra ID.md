@@ -137,7 +137,6 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
  - Under Platform Configurations, your ArcGIS Login Redirect URI will be listed under the platform type: Web. Copy your ArcGIS Login Redirect URI.
  - Delete the ArcGIS Login Redirect URI and select Save.
  - Select Add a platform, then select Single-page application. Paste your ArcGIS Login Redirect URI and select Configure.
- - Scroll down to the Implicit grant and hybrid flows section. Enable Access tokens and ID tokens, then select Save.
 
 #### Configure ArcGIS for PKCE
  - Sign in to your ArcGIS web site and navigate to Settings > Security > Logins.
@@ -164,6 +163,9 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
 ### Examine the Azure id_token
 
 To examine the OpenID Connect id_token issued by Azure Entra ID, use the jwt.ms utility added when registering a new application (See Step 4 in [Setup OpenID Connect logins for ArcGIS](#setup-openid-connect-logins-for-arcgis "Setup OpenID Connect logins for ArcGIS")).
+
+> [!NOTE]  
+> If you registered your ArcGIS Redirect URI as a Single-page application, enable Access tokens and ID tokens for the app registration (Azure App registration > Authentication > Implicit grant and hybrid flows). 
 
 1. Copy the URL below to a text editor of your choice:
 ```
