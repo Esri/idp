@@ -146,9 +146,10 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
 
 # Troubleshoot OpenID Connect login issues
 
-
 [Verify the Azure app client secret](#verify-the-azure-app-client-secret)
-[Examine the Azure id_token](#examine-the-azure-id-token)
+
+[Examine the Azure id_token](#examine-the-azure-id_token)
+
 [Increase the ArcGIS Web Adaptor query string](#increase-the-arcgis-web-adaptor-query-string)
 
 ### Verify the Azure app client secret
