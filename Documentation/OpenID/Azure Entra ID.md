@@ -213,6 +213,9 @@ https://login.microsoftonline.com/c8aa7711-c203-4a29-9c49-60c4eab0f1bd/oauth2/v2
 ### Increase the ArcGIS Web Adaptor query string
 If you are using the ArcGIS Web Adaptor version 11.1 or older:
   - On the IIS web adaptor machine, use a text editor to edit C:\inetpub\wwwroot\portal\web.config:
-     - Change <requestLimits maxAllowedContentLength="2147483648" /> to <requestLimits maxAllowedContentLength="2147483648"  maxQueryString="10000" />
+     - Change
+       ``` <requestLimits maxAllowedContentLength="2147483648" /> ```
+       to
+       ``` <requestLimits maxAllowedContentLength="2147483648"  maxQueryString="10000" /> ```
   - Restart IIS.
 
