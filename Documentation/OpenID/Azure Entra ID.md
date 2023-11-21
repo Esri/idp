@@ -146,6 +146,11 @@ If you have a requirement to use PKCE, which is recommended when authenticating 
 
 # Troubleshoot OpenID Connect login issues
 
+
+[Verify the Azure app client secret](#verify-the-azure-app-client-secret)
+[Examine the Azure id_token](#examine-the-azure-id-token)
+[Increase the ArcGIS Web Adaptor query string](#increase-the-arcgis-web-adaptor-query-string)
+
 ### Verify the Azure app client secret
 
  - Sign in to your ArcGIS web site and navigate to Settings > Security > Logins.
@@ -203,3 +208,10 @@ https://login.microsoftonline.com/c8aa7711-c203-4a29-9c49-60c4eab0f1bd/oauth2/v2
     - oid
     - preferred_username
     - sub
+
+### Increase the ArcGIS Web Adaptor query string
+If you are using the ArcGIS Web Adaptor version 11.1 or older:
+  - On the IIS web adaptor machine, use a text editor to edit C:\inetpub\wwwroot\portal\web.config:
+     - Change <requestLimits maxAllowedContentLength="2147483648" /> to <requestLimits maxAllowedContentLength="2147483648"  maxQueryString="10000" />
+  - Restart IIS.
+
