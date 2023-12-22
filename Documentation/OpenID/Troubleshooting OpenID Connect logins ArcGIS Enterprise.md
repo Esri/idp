@@ -1,6 +1,6 @@
 # Advanced Troubleshooting of OpenID Connect logins in ArcGIS Enterprise 
 
- OpenID Connect login failures can be difficult to troubleshoot since communication, to obtain the access and id tokens, occurs directly between ArcGIS Enterprise and the Identity Provider. This topic is for advanced users and demonstrates how to capture and analyze the backend communication between ArcGIS Enterprise and the IDP. 
+ OpenID Connect login failures can be difficult to troubleshoot since communication, to obtain the access and id tokens, occurs directly between ArcGIS Enterprise and the Identity Provider. This topic demonstrates how to capture and analyze the backend communication between ArcGIS Enterprise and the IDP. 
 
 ### Overview
 
