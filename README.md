@@ -4,8 +4,8 @@
 
 ## Instructions
 
-If you'd like to contribute to this repository, or have questions or feedback, you're welcome to create an Issue or contact our team via this email alias:
-IDP_info@esri.com
+If you'd like to contribute to this repository, or have feedback regarding the content, you're welcome to create an Issue or contact our team via this email alias:
+IDP_info@esri.com. For ArcGIS product support, please contact [Esri Support](https://support.esri.com/).
 
 We will review all submittals for content and clarity, but welcome any style of writing. 
 
