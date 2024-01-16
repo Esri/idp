@@ -15,7 +15,7 @@
 > [!WARNING]
 > The workflow and configuration documented in this topic should only be used temporarily for troubleshooting in a development environment.
  
-1. Run Fiddler on a new host machine, separate from the host running ArcGIS Enterprise.
+1. ***Run Fiddler on a new host machine, separate from the host machine that is running ArcGIS Enterprise.***
 
 2. Under Tools select Options.
 
