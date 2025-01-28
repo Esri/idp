@@ -3,13 +3,13 @@
 ----
 
 
-# Configure Azure Active Directory
+# Configure Azure Entra ID
 
-Microsoft Azure Active Directory (AD) is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it as your IDP for SAML logins in [ArcGIS Online](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) and [ArcGIS Enterprise](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm) (Portal for ArcGIS on-premises and in the cloud). The configuration process involves two main steps: registering Azure AD in ArcGIS and registering ArcGIS in your Azure AD portal.
+Microsoft Azure Entra ID is a Security Assertion Markup Language (SAML)-compliant identity provider (IDP). You can configure it as your IDP for SAML logins in [ArcGIS Online](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm) and [ArcGIS Enterprise](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm) (Portal for ArcGIS on-premises and in the cloud). The configuration process involves two main steps: registering Azure Entra ID in ArcGIS and registering ArcGIS in your Azure Entra ID portal.
 
 > **Note:** To ensure that your SAML logins are configured securely, review the best practices for SAML security in [ArcGIS Enterprise](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_E8C7F86C02A04A778878B1327C633B36) and [ArcGIS Online](https://doc.arcgis.com/en/arcgis-online/administer/saml-logins.htm#ESRI_SECTION1_E8C7F86C02A04A778878B1327C633B36).
 
-To configure Azure AD with ArcGIS, you need a premium Azure AD subscription.
+To configure Azure AD with ArcGIS, you need a premium Azure Entra ID subscription.
 
 ## Required information
 
@@ -17,7 +17,7 @@ ArcGIS requires certain attribute information to be received from the IDP when a
 
 ArcGIS supports the inflow of a user's email address, group memberships, given name, and surname from the SAML identity provider.
 
-## Register Azure AD as the SAML IDP with ArcGIS
+## Register Azure Entra ID as the SAML IDP with ArcGIS
 
 1. Verify that you are signed in as an administrator of your organization.
 
@@ -34,34 +34,34 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
    > **Tip:** For ArcGIS Enterprise users, it's recommended that you designate at least one account as an administrator and demote or [delete the initial administrator account](https://enterprise.arcgis.com/en/portal/latest/administer/windows/about-the-initial-administrator-account.htm). It is also recommended that you [disable the **Create an account** button](https://enterprise.arcgis.com/en/portal/latest/administer/windows/add-members-to-your-portal.htm#ESRI_SECTION2_2D990320EC354A559A7081CF91709894) in the  website so people cannot create their own accounts. For full instructions, see [Configure a SAML-compliant identity provider with your portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/configuring-a-saml-compliant-identity-provider-with-your-portal.htm#ESRI_SECTION1_65AC88E72E2B4CFBBBC061311F9B4EA4).
 
 6. Provide metadata information for the IDP using one of the options below:
-   - **File**—[Download the Azure AD metadata file](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#download-the-azure-ad-metadata-or-certificate) and upload the file to ArcGIS using the **File** option.
+   - **File**—[Download the Azure Entra ID metadata file](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#download-the-azure-ad-metadata-or-certificate) and upload the file to ArcGIS using the **File** option.
 
-     > **Note:** If this is the first time you're registering a service provider with Azure AD, you need to get the metadata file after registering ArcGIS with Azure AD.
+     > **Note:** If this is the first time you're registering a service provider with Azure Entra ID, you need to get the metadata file after registering ArcGIS with Azure Entra ID.
     
    - **Parameters**—Choose this option if the URL or federation metadata file is not accessible. Enter the values manually and supply the requested parameters: the login URL and the certificate, encoded in the BASE 64 format. Contact your Azure AD administrator to obtain these.
 
 7. Configure the following advanced settings as applicable:
-   - **Encrypt Assertion**—Enable this option to encrypt the Azure AD SAML assertion responses.
-   - **Enable signed request**—Enable this option to have ArcGIS sign the SAML authentication request sent to Azure AD.
-   - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS use a logout URL to sign out the user from Azure AD. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, check **Enable Signed Request**.
+   - **Encrypt Assertion**—Enable this option to encrypt the Azure Entra ID SAML assertion responses.
+   - **Enable signed request**—Enable this option to have ArcGIS sign the SAML authentication request sent to Azure Entra ID.
+   - **Propagate logout to Identity Provider**—Enable this option to have ArcGIS use a logout URL to sign out the user from Azure Entra ID. Enter the URL to use in the **Logout URL** setting. If the IDP requires the logout URL to be signed, check **Enable Signed Request**.
    - **Update profiles on sign in**—Enable this option to have ArcGIS update users' `givenName` and `email address` attributes if they've changed since they last signed in.
    - **Enable SAML based group membership**—Enable this option to allow organization members to link specified SAML-based enterprise groups to ArcGIS groups during the [group creation process](https://enterprise.arcgis.com/en/portal/latest/administer/windows/create-groups.htm).
    - **Logout URL**—The IDP URL is used to sign out the currently signed in user.
-   - **Entity ID**—Update this value to use a new entity ID to uniquely identify your portal or organization to Azure AD.
+   - **Entity ID**—Update this value to use a new entity ID to uniquely identify your portal or organization to Azure Entra ID.
 
    The Encrypt Assertion and Enable signed request settings use the certificate samlcert in the portal keystore. To use a new certificate, delete the samlcert certificate, create a new certificate with the same alias (samlcert) following the steps in [Import a certificate into the portal](https://enterprise.arcgis.com/en/portal/latest/administer/windows/import-a-certificate-into-the-portal.htm), and restart the portal.
   
 8. When finished, click **Update Identity Provider**.
 
-9. Click **Download service provider metadata** to download the portal's or organization's metadata file. Information in this file will be used to register the portal or organization as the trusted service provider with Azure AD.
+9. Click **Download service provider metadata** to download the portal's or organization's metadata file. Information in this file will be used to register the portal or organization as the trusted service provider with Azure Entra ID.
 
-## Register ArcGIS as the trusted service provider with Azure AD
+## Register ArcGIS as the trusted service provider with Azure Entra ID
 
 1. Log in to your Azure portal as a member with administrative privileges.
 
-2. Following the steps in Azure documentation, add ArcGIS as a non-gallery application to your Azure AD and configure **Single sign-on**. You will need to provide the `Metadata.xml` file downloaded from ArcGIS.
+2. Following the steps in Azure documentation, add ArcGIS as a non-gallery application to your Azure Entra ID and configure **Single sign-on**. You will need to provide the `Metadata.xml` file downloaded from ArcGIS.
 
-   ArcGIS appears in the **Enterprise Applications** list in Azure AD. 
+   ArcGIS appears in the **Enterprise Applications** list in Azure Entra ID. 
 
 3. [Add and assign users to the application](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#assign-users-to-the-application) as needed.
 
