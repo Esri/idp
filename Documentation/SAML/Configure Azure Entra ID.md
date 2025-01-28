@@ -7,6 +7,7 @@
 * [Configure Azure Entra ID](#configure-azure-entra-id "Configure Azure Entra ID")
 * [Register Azure Entra ID as the SAML IDP with ArcGIS](#register-azure-entra-id-as-the-saml-idp-with-arcgis "Register Azure Entra ID as the SAML IDP with ArcGIS")
 * [Register ArcGIS as the trusted service provider with Azure Entra ID](#register-arcgis-as-the-trusted-service-provider-with-azure-entra-id "Register ArcGIS as the trusted service provider with Azure Entra ID")
+* [Workaround the Azure SAML assertion group size limit](#workaround-the-azure-saml-assertion-group-size-limit "Workaround the Azure SAML assertion group size limit")
 
 
 # Configure Azure Entra ID
@@ -72,3 +73,27 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 3. [Add and assign users to the application](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol#assign-users-to-the-application) as needed.
 
 4. Optionally [configure and customize the SAML claims](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-saml-claims-customization) passed to ArcGIS. The attributes of interest in the SAML response are `givenName` and `emailaddress`.
+
+## Workaround the Azure SAML assertion group size limit
+
+In Azure, the number of groups emitted in a SAML assertion is [limited to 150](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-fed-group-claims). If you have users who are present in more than 150 groups, you will need to use one of the following workarounds.
+
+- Use the Azure group filtering options. Add a filter in the advanced section of Azure group claims to ensure the response only includes the groups you want to send to ArcGIS
+
+- Implement [Azure application roles[(https://learn.microsoft.com/en-us/entra/identity-platform/enterprise-app-role-management) instead of Azure groups for authorization.
+
+- Configure ArcGIS Enterprise (only available in version 11.3 and higher) to make direct queries to the graph API to retrieve group membership information.
+  - Configure Azure to support the Graph API. For instructions, please refer to the Azure documentation.
+  - Sign in to the Portal Administrator Directory as an administrator of your organization. The URL is in the format https://webadaptorhost.domain.com/webadaptorname/portaladmin.
+  - Click Security > Configuration > Update Identity Store
+  - In the Group store configuration (in JSON format) text box, paste your organization's Azure configuration (in JSON format)
+      ```
+      {
+        "type": "AZURE",
+        "properties": {
+      	  "CLIENT_ID": "The Application (client) ID",
+      	  "CLIENT_SECRET_PROP": "The client secret value (NOT the Secret ID)",
+      	  "TENANT_ID_PROP": "The Azure Directory (tenant) ID"
+        }
+      }
+      ```
