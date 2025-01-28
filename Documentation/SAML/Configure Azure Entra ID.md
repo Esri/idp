@@ -80,20 +80,31 @@ In Azure, the number of groups emitted in a SAML assertion is [limited to 150](h
 
 - Use the Azure group filtering options. Add a filter in the advanced section of Azure group claims to ensure the response only includes the groups you want to send to ArcGIS
 
-- Implement [Azure application roles[(https://learn.microsoft.com/en-us/entra/identity-platform/enterprise-app-role-management) instead of Azure groups for authorization.
+- Implement [Azure application roles](https://learn.microsoft.com/en-us/entra/identity-platform/enterprise-app-role-management) instead of Azure groups for authorization.
 
-- Configure ArcGIS Enterprise (only available in version 11.3 and higher) to make direct queries to the graph API to retrieve group membership information.
-  - Configure Azure to support the Graph API. For instructions, please refer to the Azure documentation.
-  - Sign in to the Portal Administrator Directory as an administrator of your organization. The URL is in the format https://webadaptorhost.domain.com/webadaptorname/portaladmin.
-  - Click Security > Configuration > Update Identity Store
-  - In the Group store configuration (in JSON format) text box, paste your organization's Azure configuration (in JSON format)
+- If you are using Portal for ArcGIS(only available in version 11.3 and higher), configure ArcGIS to retrieve group membership information using the graph API.
+  - Configure your Azure tenant to enable the following permissions for the Microsoft Graph API. For instructions, please refer to the [Azure](https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-configure-permissions?tabs=http&pivots=entra-portal-api-permissions) documentation.
+    - User.Read.All
+	 - GroupMember.Read.All 
+  - Configure ArcGIS to ignore the group attribute in the SAML assertion.
+     - Sign in to ArcGIS Enterprise as an administrator and click Organization > Settings > Security.
+     - In the Logins section, click on your current SAML configuration.
+     - Click "Show advanced settings"
+     - Disable the "Enable SAML based group membership" option. 
+  - Configure ArcGIS with the Azure graph API properties corresponding to your ArcGIS app registration.
+    - Sign in to the Portal Administrator Directory as an administrator of your organization. The URL is in the format https://webadaptorhost.domain.com/webadaptorname/portaladmin.
+    - Click Security > Configuration > Update Identity Store
+    - In the Group store configuration (in JSON format) text box, paste your organization's Azure configuration (in JSON format). 
       ```
       {
         "type": "AZURE",
         "properties": {
       	  "CLIENT_ID": "The Application (client) ID",
-      	  "CLIENT_SECRET_PROP": "The client secret value (NOT the Secret ID)",
+      	  "CLIENT_SECRET_PROP": "The client secret value",
       	  "TENANT_ID_PROP": "The Azure Directory (tenant) ID"
         }
       }
       ```
+  - Create new groups in ArcGIS that map to your Azure groups.
+    - Sign in to ArcGIS Enterprise as an administrator and click Groups > Create group
+    - Under "Being a member of an Azure group" enter the Azure Group ID value.
