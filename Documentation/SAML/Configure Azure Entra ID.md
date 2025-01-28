@@ -2,6 +2,12 @@
 
 ----
 
+### In this article
+
+* [Configure Azure Entra ID](#configure-azure-entra-id "Configure Azure Entra ID")
+* [Register Azure Entra ID as the SAML IDP with ArcGIS](#register-azure-entra-id-as-the-saml-idp-with-arcgis "Register Azure Entra ID as the SAML IDP with ArcGIS")
+* [Register ArcGIS as the trusted service provider with Azure Entra ID](#register-arcgis-as-the-trusted-service-provider-with-azure-entra-id "Register ArcGIS as the trusted service provider with Azure Entra ID")
+
 
 # Configure Azure Entra ID
 
