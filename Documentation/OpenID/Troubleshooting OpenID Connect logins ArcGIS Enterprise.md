@@ -1,4 +1,21 @@
-# Advanced Troubleshooting of OpenID Connect logins in ArcGIS Enterprise 
+# Troubleshooting OpenID Connect issues
+
+## Back-channel request from ArcGIS to the OpenID connect IdP fails
+When logging into ArcGIS using an OpenID connect account, ArcGIS redirects the web browser to the Identity Provider's login page. After successful user authentication with the OIDC IdP, ArcGIS makes a back-channel request to the OIDC IdP to obtain an access token and an ID token. If the back-channel request is successful, the browser redirects to the ArcGIS home page. If the back-channel request fails, the error message "Did not receive required parameter from the provider" or "Did not receive 'user profile' parameter from the provider" will be displayed. To resolve this error, please carefully check the following:
+
+- Verify that ArcGIS can reach the OIDC IdP's token endpoint URL and that the certificate used by the web server hosting the OIDC IdP is issued by a commercial CA. If you are using ArcGIS Enterprise and a local CA authority to generate your IdP's web server certificate, you must import the CA root and intermediate certificates into ArcGIS Enterprise.
+
+- Ensure that the value of the ArcGIS "Client secret" parameter exactly matches the "Client secret" value on the IdP side. 
+> [!NOTE]  
+> Some OIDC IdPs, have a Client secret name or ID. You cannot use the Client secret name or ID in place of the Client secret value.
+
+- Verify that the ArcGIS "Provider issuer ID" parameter exactly matches the "issuer" property value obtained from the well known OIDC configuration (https://{your_issuer_domain}/{idp_specific_context}/.well-known/openid-configuration).
+
+- Verify that the ArcGIS "Token endpoint URL" parameter exactly matches the "token_endpoint" property value obtained from the well known OIDC configuration (https://{your_issuer_domain}/{idp_specific_context}/.well-known/openid-configuration).
+
+- Verify that the ArcGIS "JSON web key set (JWKS) URL" parameter exactly matches the "jwks_uri" property value obtained from the well known OIDC configuration (https://{your_issuer_domain}/{idp_specific_context}/.well-known/openid-configuration).
+
+## Advanced Troubleshooting of OpenID Connect logins in ArcGIS Enterprise 
 
  OpenID Connect login failures can be difficult to troubleshoot since communication, to obtain the access and id tokens, occurs directly between ArcGIS Enterprise and the Identity Provider. This topic demonstrates how to capture and analyze the backend communication between ArcGIS Enterprise and the IDP. 
 
