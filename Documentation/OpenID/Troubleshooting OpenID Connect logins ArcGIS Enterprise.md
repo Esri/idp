@@ -15,6 +15,8 @@ When logging into ArcGIS using an OpenID connect account, ArcGIS redirects the w
 
 - Verify that the ArcGIS "JSON web key set (JWKS) URL" parameter exactly matches the "jwks_uri" property value obtained from the well known OIDC configuration (https://{your_issuer_domain}/{idp_specific_context}/.well-known/openid-configuration).
 
+- If the ArcGIS "User PKCE enhanced Authorization Code Flow" parameter is enabled, disable it and test logins again to identify if the issue is due to a PKCE related failure.
+
 ## Advanced Troubleshooting of OpenID Connect logins in ArcGIS Enterprise 
 
  OpenID Connect login failures can be difficult to troubleshoot since communication, to obtain the access and id tokens, occurs directly between ArcGIS Enterprise and the Identity Provider. This topic demonstrates how to capture and analyze the backend communication between ArcGIS Enterprise and the IDP. 
