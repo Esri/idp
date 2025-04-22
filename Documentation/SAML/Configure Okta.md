@@ -65,9 +65,9 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
 5. On the **Configure SAML** tab, do the following:
 
-   - Enter the value for **Single sign on URL**, for example, `https://portalhostname.domain.com/portalcontext/sharing/rest/oauth2/saml/signin`. This value can be copied from the service provider metadata file downloaded from your ArcGIS Organization.
+   - Enter the value for **Single sign on URL**, for example, `https://{ArcGIS Fully Qualified Domain Name}/{Your base context URL}/sharing/rest/oauth2/saml/signin`. This value can be copied from the service provider metadata file downloaded from your ArcGIS Organization.
 
-   - Enter the value for the **Audience URI**. The default value is set to `portalhostname.domain.com.portalcontext`. This value can be copied from the service provider metadata file downloaded from your ArcGIS Organization.
+   - Enter the value for the **Audience URI**. The default value is set to `{ArcGIS Fully Qualified Domain Name}.{Your base context URL}`. This value can be copied from the service provider metadata file downloaded from your ArcGIS Organization.
 
    - Leave the **Name ID format** as **Unspecified**.
 
