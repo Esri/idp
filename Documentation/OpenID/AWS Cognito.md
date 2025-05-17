@@ -74,7 +74,7 @@
 13. In a new browser window open the ArcGIS home page, and choose the Open ID Connect login button you configured.
 > [!NOTE]  
 > While testing this workflow, it was noted that the user session in both ArcGIS and AWS Cognito are cleared. However, AWS Cognito
-> does not display a page asking the user to confirm the logout and attempts to redirect to a login page. This fails with
+> does not prompt the user to confirm the logout and attempts to redirect to a login page. This fails with
 > the error message "Error code: 400 Bad Request". There may be additional steps required 
 > in AWS Congito to successfully enable OIDC logouts that are beyond the scope of this guide.
 > 
