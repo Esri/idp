@@ -72,7 +72,8 @@
 > [!NOTE]  
 > While testing this workflow, it was noted that logouts clear the user session in both ArcGIS and AWS Cognito. However, AWS Cognito
 > does not display a page asking the user to confirm the logout, as required by the OpenID specification. It also appears to not accept
-> the standard OIDC logout request and returns an error page with the message "Error code: 400 Bad Request".
+> the standard OIDC logout request and returns an error page with the message "Error code: 400 Bad Request". There may be additional steps required 
+> to successfully enable OIDC logouts that are beyond the scope of this guide.
 > 
 > For more information on the OpenID Connect logout request specification, please see:
 > https://openid.net/specs/openid-connect-rpinitiated-1_0.html#RPLogout
