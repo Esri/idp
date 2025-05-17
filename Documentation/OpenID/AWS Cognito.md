@@ -1,10 +1,5 @@
 # OpenID Connect configuration using AWS Cognito
 
-> [!NOTE]  
-> This guide is meant to be used a proof of concept. Please follow instructions in the AWS Cognito documentation for deploying
-> a commercial\production quality OpenID Connect provider using AWS Cognito.
-
-
 1. Sign in to the AWS Management Console.
 
 2. Create a new user pool
@@ -78,9 +73,9 @@
 
 13. In a new browser window open the ArcGIS home page, and choose the Open ID Connect login button you configured.
 > [!NOTE]  
-> While testing this workflow, it was noted that logouts clear the user session in both ArcGIS and AWS Cognito. However, AWS Cognito
-> does not display a page asking the user to confirm the logout, as required by the OpenID specification. It also appears to not accept
-> the standard OIDC logout request and returns an error page with the message "Error code: 400 Bad Request". There may be additional steps required 
+> While testing this workflow, it was noted that the user session in both ArcGIS and AWS Cognito are cleared. However, AWS Cognito
+> does not display a page asking the user to confirm the logout and attempts to redirect to a login page. This fails with
+> the error message "Error code: 400 Bad Request". There may be additional steps required 
 > in AWS Congito to successfully enable OIDC logouts that are beyond the scope of this guide.
 > 
 > For more information on the OpenID Connect logout request specification, please see:
