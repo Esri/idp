@@ -1,7 +1,5 @@
 # OpenID Connect configuration using AWS Cognito
 
-## Setup AWS Cognito to support OpenID Connect
-
 1. Sign in to the AWS Management Console.
 
 2. Create a new user pool
