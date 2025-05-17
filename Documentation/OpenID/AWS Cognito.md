@@ -1,5 +1,10 @@
 # OpenID Connect configuration using AWS Cognito
 
+> [!NOTE]  
+> This guide is meant to be used a proof of concept. Please follow instructions in the AWS Cognito documentation for deploying
+> a commercial\production quality OpenID Connect provider using AWS Cognito.
+
+
 1. Sign in to the AWS Management Console.
 
 2. Create a new user pool
