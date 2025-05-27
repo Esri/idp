@@ -76,7 +76,7 @@ ArcGIS supports the inflow of a user's email address, group memberships, given n
 
 ## Workaround the Azure SAML assertion group size limit
 
-In Azure, the number of groups emitted in a SAML assertion is [limited to 150](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-fed-group-claims). If you have users who are present in more than 150 groups, you will need to use one of the following workarounds.
+In Azure, the number of groups emitted in a SAML assertion is [limited to 150](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-fed-group-claims). If you have users who are present in more than 150 groups, the SAML assertion response from Azure will not contain group membership. To obtain group membership information for such Azure users, you will need to use one of the following workarounds.
 
 - Use the Azure group filtering options. Add a filter in the advanced section of Azure group claims to ensure the response only includes the groups you want to send to ArcGIS
 
