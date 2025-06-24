@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is a collaborative repository created to gather and share expertise for configuring SAML and OpenID Connect Identity Providers in conjunction with an ArcGIS deployment. Since there are numerous public, open-source, and proprietary products that implement SAML 2.0 and the OpenID Connect protocol, this repository not meant to be a comprehensive resource. 
+This is a collaborative repository created to gather and share expertise for configuring SAML and OpenID Connect Identity Providers in conjunction with an ArcGIS deployment. Since there are numerous public, open-source, and proprietary products that implement SAML 2.0 and the OpenID Connect protocol, this repository is not meant to be a comprehensive resource. 
 
 ## Instructions
 
