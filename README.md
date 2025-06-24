@@ -1,6 +1,8 @@
 # IDP
 
-## Purpose: Instructions for configuring SAML-compliant Identity Providers in conjunction with an ArcGIS implementation.
+## Purpose
+
+This is a collaborative repository created to gather and share expertise for configuring SAML and OpenID Connect Identity Providers in conjunction with an ArcGIS deployment. Since there are numerous public, open-source, and proprietary products that implement SAML 2.0 and the OpenID Connect protocol, this repository not meant to be a comprehensive resource. 
 
 ## Instructions
 
@@ -10,8 +12,9 @@ IDP_info@esri.com. For ArcGIS product support, please contact [Esri Support](htt
 We will review all submittals for content and clarity, but welcome any style of writing. 
 
 ## Info
-This repo is being released in the first quarter of 2021, initially including a small subsection of all IDP documentation.
-If you cannot find the documentation you're looking for, please visit the ArcGIS documentation in the Useful Links section.
+This repo was released in the first quarter of 2021, with some initial Identity Provider documentation contributed by Esri.
+
+If you cannot find the information you're looking for, please visit the ArcGIS documentation in the Useful Links section.
 
 Esri does not maintain individual submittals to this repository. That which is published here is deemed accurate at the time of publication, for the software version(s) indicated.
 
@@ -24,7 +27,6 @@ https://doc.arcgis.com/en/arcgis-online/reference/faq.htm
 
 ArcGIS Enterprise
 https://enterprise.arcgis.com/en/ 
-
 
 ## Issues
 
