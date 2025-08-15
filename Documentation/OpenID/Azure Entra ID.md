@@ -84,11 +84,11 @@
 
 12. Fill in the parameters using the values saved in the text document and select Save.
 
-      - For Let new members join, select Automatically. Joining via invitations is currently unsupported for Azure Entra ID.
+      - For Let new members join, select Automatically. If you select "Upon invitation by an admin", you will need to set "User identifier claim" to oid.
       - For Provider scopes/permissions, enter the value: openid profile email.
       - Enable the option: Send access token in header.
-      - For ArGIS username field\claim name, enter preferred_username. You may also choose to use any other id_token attribute of your choice, such as email.
-
+      - For the optional ArGIS username field\claim name, enter preferred_username. You may also choose to use any other id_token attribute of your choice, such as email.
+      - For the optional User identifier claim, oid is recommended and allows you to use the "Upon invitation by an admin" option. If this parameter is not specified, the default value used is sub. In Azure, the OIDC sub attribute value is unique to an Azure client application, while the oid attribute value is unique to an Azure user across all Azure applications.
 
          <img src="https://github.com/Esri/idp/assets/51384051/aa51e4ad-7e57-40a1-be0b-2fb0b7ec190e" width="720">
 
