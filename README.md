@@ -6,9 +6,9 @@ This is a repository created to facilitate collaboration between users of ArcGIS
 
 ## Instructions
 
-If you have issues configuring SAML or OpenID Connect logins with your Identity Provider, please contact [Esri Support](https://support.esri.com/).
+If you have issues configuring or using SAML\OpenID Connect logins with your Identity Provider, please contact [Esri Support](https://support.esri.com/).
 
-If you would like to share your expertise by adding a new topic, or make updates to an existing topic, you're welcome to create an issue. Please include a draft of your proposed changes when submitting the issue. We will review all submittals for content and clarity, but welcome any style of writing. You can also send your contribution to our team via this email alias: IDP_info@esri.com. 
+If you would like to share your expertise by adding a new topic, or make updates to an existing topic, you're welcome to create an issue. Please include a draft of your proposed changes when submitting the issue. We will review all submittals for content and clarity, but welcome any style of writing. You can also send your contribution to our documentation team via this email alias: IDP_info@esri.com. 
 
 ## Info
 This repo was released in the first quarter of 2021, with some initial Identity Provider documentation contributed by Esri.
