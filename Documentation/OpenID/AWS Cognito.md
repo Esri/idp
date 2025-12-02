@@ -13,15 +13,11 @@
 3. Navigate to the User Management > Users tab and create a new user.
 
 4. Navigate to Applications > App clients and pick the client you just created.
-   - From the "App client information" section, copy the Client ID and Client secret values and save them to a text file. 
-
-    <img src="https://github.com/user-attachments/assets/64b333fe-e7b0-4b34-b611-04faec29a4aa" width="720">
+   - From the "App client information" section, copy the Client ID and Client secret values and save them to a text document. 
 
 5. Navigate to the user pool's Overview page.
-   - Compose and save to a text file, the URL for the OIDC configuration. The format is typically: <PRE>https://cognito-idp.[region].amazonaws.com/[userPoolId]/.well-known/openid-configuration</PRE>
+   - Write the URL for your OIDC configuration to the text document. The format is typically: <PRE>https://cognito-idp.[region].amazonaws.com/[userPoolId]/.well-known/openid-configuration</PRE>
    - Alternatively, you can copy the "Token signing key URL" and replace the last part "jwks.json" with "openid-configuration".
-
-    <img src="https://github.com/user-attachments/assets/b0a72b46-264b-4710-bac1-16208942cad6" width="720">
 
 6. Navigate to the openid configuration URL.   
 
