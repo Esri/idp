@@ -3,9 +3,11 @@
 ## OIDC resources
 * [RFC 6749 The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
 * [OpenID Connect specifications](https://openid.net/developers/specs/)
+  * [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html)
 * [Youtube video: Everything You Ever Wanted to Know About OAuth and OIDC](https://youtu.be/8aCyojTIW6U)
 * [RFC 7636: Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
 * [Youtube video: Authorization code injection demo](https://www.youtube.com/live/moQidjdV5cw)
+* [OpenID Connect on the Microsoft identity platform (Entra ID)](https://learn.microsoft.com/en-us/entra/architecture/auth-oidc)
 
 ## Frequently Asked Questions
 
