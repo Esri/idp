@@ -59,9 +59,16 @@
       - For Provider scopes/permissions, enter the value: openid profile email.
       - Enable the option: Send access token in header.
       - For the optional ArGIS username field\claim name, enter preferred_username. You may also choose to use any other id_token attribute of your choice, such as email.
-      - For the optional User identifier claim, oid is recommended and allows you to use the "Upon invitation by an admin" option. If this parameter is not specified, the default value used is sub. In Azure, the OIDC sub attribute value is unique to an Azure client application, while the oid attribute value is unique to an Azure user across all Azure applications. In ArcGIS Enterprise 11.3, the IdpUsernameClaim can only be configured using the sharing API: https://[hostname.domain.com]/[contexturl]/sharing/rest/portals/0123456789ABCDEF/oidc/[idp-id]/update. 
-
-         <img src="https://github.com/Esri/idp/assets/51384051/aa51e4ad-7e57-40a1-be0b-2fb0b7ec190e" width="720">
+      - For the optional User identifier claim, oid is recommended as it allows you to use the "Upon invitation by an admin" option in ArcGIS. If the ArcGIS user identify claim parameter is not configured, the sub value from Azure Entra ID claim is used.
+      
+   > [!NOTE]
+   > In Azure Entra ID, the OIDC sub value is unique per client application—its value changes depending on which Azure app is requesting authentication.
+   > The sub value cannot be obtained in advance from Entra ID and as a result users cannot be pre-provisioned in ArcGIS.
+   > The Azure oid attribute value is unique to an Azure user across all Azure applications and can also be obtained in advance by the Azure administrator.
+   > In ArcGIS Enterprise 11.3, the IdpUsernameClaim can only be configured using the sharing API: https://[hostname.domain.com]/[contexturl]/sharing/rest/portals/0123456789ABCDEF/oidc/[idp-id]/update.
+               
+         
+   <img src="https://github.com/Esri/idp/assets/51384051/aa51e4ad-7e57-40a1-be0b-2fb0b7ec190e" width="720">
 
 
 13. Select Configure login next to the OpenID connect login registration you created and scroll down to the end. Copy and save the ArcGIS Login Redirect URI value to the text document.
